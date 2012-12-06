@@ -1,0 +1,32 @@
+html, body {
+	height: 100%;
+}
+
+
+#content {
+	position: relative;
+	width: auto;
+	height: 100%;
+}
+
+#content > div {
+	display: none;
+	height: 100%;
+	width: auto;
+}
+
+
+#bottom_menu_bar {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+}
+
+.button_bar {
+	float: left;
+	bottom: 0px;
+	width: 25%;
+	height: 29px;
+}
+
+/* px vs em ? */
