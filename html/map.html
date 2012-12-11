@@ -33,35 +33,56 @@
 			<div id="map_canvas" style="width: 100%; height: 100%;"></div>
 		</div>
 		<div id="content_sq2">
-			<canvas id="c2"></canvas>
 			<div>i like kitty cats</div>
+			<canvas id="c2"></canvas>
+			<div class="dealers_list">
+			<ul class="list">
+				<li class="ele">My subject title</li>
+				<li class="ele">4.5 stars</li>
+				<li class="ele">408-not-popo</li>
+				<li class="ele">i sell X, Y, Z and maybe ∂</li>
+				<li class="ele">Hang's place at intersection of msft and amzn</li>
+			</ul>
+			<ul class="list">
+				<li class="ele">nshit title</li>
+				<li class="ele">2.1 stars</li>
+				<li class="ele">408-call-fbi</li>
+				<li class="ele">i sell monkeys</li>
+				<li class="ele">Hein's cupboard</li>
+			</ul>
+			<ul class="list">
+				<li class="ele">london</li>
+				<li class="ele">4.9 stars</li>
+				<li class="ele">408-psy-chic</li>
+				<li class="ele">i alpha-plus products only</li>
+				<li class="ele">alpha-plus hatchery</li>
+			</ul>
+			</div>
+		</div>
+		<div id="content_sq3">
+			<div>theyre so fluffy</div>
+			<canvas id="c3"></canvas>
 			<form>
-				blah: <input type="text" name="n1"> <br>
-				blah2: <input type="text" name="n2"> <br>
+				description: <input type="text" name="n1"> <br>
+				price: <input type="number" name="n2"> <br>
+				location: <input type="text" name="n2"> <br>
+				start time: <input type="date" name="n2">
+						<input type="time" name="n2"> <br>
+				length of posting: <input type="text" name="n2"> <br>
 				<input type="submit">
 			</form>
 		</div>
-		<div id="content_sq3">
-			<canvas id="c3"></canvas>
-			<div>theyre so fluffy</div>
-			<ul>
-				<li>Place A</li>
-				<li>Place b</li>
-				<li>Place C</li>
-				<li>Place d</li>
-			</ul>
-		</div>
 		<div id="content_sq4">
-			<canvas id="c4"></canvas>
 			<div>i'm gonna steal saxon's</div>
+			<canvas id="c4"></canvas>
 		</div>
 	</div>
 
 	<div id="bottom_menu_bar">
 		<button id="sq1" class="button_bar" onclick="showContent(this)">map</button>
-		<button id="sq2" class="button_bar" onclick="showContent(this)">list</button>
+		<button id="sq2" class="button_bar" onclick="showContent(this)">deals</button>
 		<button id="sq3" class="button_bar" onclick="showContent(this)">post</button>
-		<button id="sq4" class="button_bar" onclick="showContent(this)">wut?</button>
+		<button id="sq4" class="button_bar" onclick="showContent(this)">my posts</button>
 	</div>
 </body>
 </html>

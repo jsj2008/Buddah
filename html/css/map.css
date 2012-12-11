@@ -2,7 +2,7 @@ html, body {
 	height: 100%;
 }
 
-
+/* CONTENT */
 #content {
 	position: relative;
 	width: auto;
@@ -15,7 +15,19 @@ html, body {
 	width: auto;
 }
 
+/* DEALER LIST TAB */
+.list:nth-child(odd) {
+	background-color: #cccccc;
+}
+.list:nth-child(even) {
+	background-color: #ccddcc;
+}
+.ele:nth-child(1) {
+	font-weight: bold;
+} 
 
+
+/* FOOTER */
 #bottom_menu_bar {
 	position: fixed;
 	bottom: 0;
