@@ -20,5 +20,10 @@ public class InitiateRegisterRequest
     {
         this.cellphone = cellphone;
     }
+    
+    public String toString()
+    {
+        return "cellphone: " + cellphone;
+    }
 
 }

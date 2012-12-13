@@ -2,7 +2,7 @@ package services.requests;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-import model.Position;
+import model.services.Position;
 
 @XmlRootElement
 public class GetDealsRequest

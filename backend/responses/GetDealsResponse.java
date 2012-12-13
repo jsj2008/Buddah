@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-import model.Listing;
+import model.services.Listing;
 
 @XmlRootElement
 public class GetDealsResponse
