@@ -2,7 +2,7 @@ package services.requests;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-import model.Feedback;
+import model.services.Feedback;
 
 @XmlRootElement
 public class RatingRequest

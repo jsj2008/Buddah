@@ -21,4 +21,8 @@ public class LoginRequest
         this.userId = userId;
     }
 
+    public String toString()
+    {
+        return "userId: " + userId;
+    }
 }

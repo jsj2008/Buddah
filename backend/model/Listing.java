@@ -1,8 +1,9 @@
-package model;
+package model.services;
 
 import java.sql.Time;
 
 import javax.xml.datatype.Duration;
+
 
 public class Listing
 {
@@ -11,6 +12,7 @@ public class Listing
     private Position position;
     private String description;
     private float rating;
+    private float price;
     private Time startTime;
     private Duration duration;
     
@@ -76,6 +78,26 @@ public class Listing
     public void setDuration( Duration duration )
     {
         this.duration = duration;
+    }
+
+    public String getDescription()
+    {
+        return description;
+    }
+
+    public void setDescription( String description )
+    {
+        this.description = description;
+    }
+
+    public float getPrice()
+    {
+        return price;
+    }
+
+    public void setPrice( float price )
+    {
+        this.price = price;
     }
 
 }

@@ -2,7 +2,7 @@ package services.responses;
 
 import java.util.ArrayList;
 
-import model.Feedback;
+import model.services.Feedback;
 
 public class ViewPostResponse
 {

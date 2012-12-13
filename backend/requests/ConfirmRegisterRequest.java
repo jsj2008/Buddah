@@ -31,5 +31,11 @@ public class ConfirmRegisterRequest
     {
         this.username = username;
     }
+    
+    public String toString()
+    {
+        return "activationCode: " + activationCode + "\n" + 
+               "username: " + username;
+    }
 
 }
