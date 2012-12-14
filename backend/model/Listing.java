@@ -1,20 +1,15 @@
 package model.services;
 
-import java.sql.Time;
-
-import javax.xml.datatype.Duration;
-
-
 public class Listing
 {
     private String username;
     private String cellphone;
     private Position position;
     private String description;
-    private float rating;
-    private float price;
-    private Time startTime;
-    private Duration duration;
+    private double rating;
+    private double price;
+    private long startTime;
+    private long duration;
     
     public Listing()
     {
@@ -50,32 +45,32 @@ public class Listing
         this.position = position;
     }
 
-    public float getRating()
+    public double getRating()
     {
         return rating;
     }
 
-    public void setRating( float rating )
+    public void setRating( double rating )
     {
         this.rating = rating;
     }
 
-    public Time getStartTime()
+    public long getStartTime()
     {
         return startTime;
     }
 
-    public void setStartTime( Time startTime )
+    public void setStartTime( long startTime )
     {
         this.startTime = startTime;
     }
 
-    public Duration getDuration()
+    public long getDuration()
     {
         return duration;
     }
 
-    public void setDuration( Duration duration )
+    public void setDuration( long duration )
     {
         this.duration = duration;
     }
@@ -90,12 +85,12 @@ public class Listing
         this.description = description;
     }
 
-    public float getPrice()
+    public double getPrice()
     {
         return price;
     }
 
-    public void setPrice( float price )
+    public void setPrice( double price )
     {
         this.price = price;
     }

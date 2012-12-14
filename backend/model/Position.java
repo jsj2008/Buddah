@@ -2,31 +2,31 @@ package model.services;
 
 public class Position
 {
-    private float longitude;
-    private float latitude;
+    private double longitude;
+    private double latitude;
 
     public Position()
     {
     }
 
-    public float getLongitude()
+    public double getLongitude()
     {
         return longitude;
     }
 
-    public void setLongitude( float longitude )
+    public void setLongitude( double d )
     {
-        this.longitude = longitude;
+        this.longitude = d;
     }
 
-    public float getLatitude()
+    public double getLatitude()
     {
         return latitude;
     }
 
-    public void setLatitude( float latitude )
+    public void setLatitude( double d )
     {
-        this.latitude = latitude;
+        this.latitude = d;
     }
 
 }

@@ -1,5 +1,7 @@
 package services.contracts;
 
+import java.util.Calendar;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
@@ -137,6 +139,7 @@ public class BuddahService
         WorkerQueue.SendMessage( POSTING_QUEUE, gson.toJson( postingRequest ).getBytes() );
 
         PostingResponse response = new PostingResponse();
+        response.setTimeLeft( postingRequest.getListing().getStartTime() - Calendar.getInstance().getTimeInMillis() );
 
         return response;
     }
