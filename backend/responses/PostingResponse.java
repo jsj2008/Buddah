@@ -1,24 +1,22 @@
 package services.responses;
 
-import javax.xml.datatype.Duration;
-
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class PostingResponse
 {
-    private Duration timeLeft;
+    private long timeLeft;
     
     public PostingResponse()
     {
     }
 
-    public Duration getTimeLeft()
+    public long getTimeLeft()
     {
         return timeLeft;
     }
 
-    public void setTimeLeft( Duration timeLeft )
+    public void setTimeLeft( long timeLeft )
     {
         this.timeLeft = timeLeft;
     }
