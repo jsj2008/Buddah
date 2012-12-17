@@ -17,6 +17,8 @@ import services.queue.*;
 import services.requests.*;
 import services.responses.*;
 
+// Service endpoint will be base url 'http://buddah.herokuapp.com/' followed by the @Path for the service and a specific endpoint,
+// ex initiateRegister url = 'http://buddah.herokuapp.com/services/initiateRegister'
 @Path( "/services" )
 @Produces( { MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN } )
 public class BuddahService
@@ -36,7 +38,8 @@ public class BuddahService
     {
         Logger.logRequest( req, "initiateRegister" );
 
-//        System.out.println( String.format( "initiateRegisterRequest: %s", initiateRegisterRequest.toString() ) );
+        // System.out.println( String.format( "initiateRegisterRequest: %s",
+        // initiateRegisterRequest.toString() ) );
 
         // TODO ENCRYPT + ACK
         WorkerQueue.SendMessage( ACCOUNT_QUEUE, "initiateRegister".getBytes() );
@@ -58,7 +61,8 @@ public class BuddahService
     {
         Logger.logRequest( req, "confirmRegister" );
 
-//        System.out.println( String.format( "confirmRegisterRequest: %s", confirmRegisterRequest.toString() ) );
+        // System.out.println( String.format( "confirmRegisterRequest: %s",
+        // confirmRegisterRequest.toString() ) );
 
         // TODO ENCRYPT + ACK
         WorkerQueue.SendMessage( ACCOUNT_QUEUE, "confirmRegister".getBytes() );
@@ -78,7 +82,8 @@ public class BuddahService
     {
         Logger.logRequest( req, "login" );
 
-//        System.out.println( String.format( "loginRequest: %s", loginRequest.toString() ) );
+        // System.out.println( String.format( "loginRequest: %s",
+        // loginRequest.toString() ) );
 
         // TODO ENCRYPT + ACK
         WorkerQueue.SendMessage( ACCOUNT_QUEUE, "login".getBytes() );
@@ -97,7 +102,8 @@ public class BuddahService
     {
         Logger.logRequest( req, "getDeals" );
 
-//        System.out.println( String.format( "getDealsRequest: %s", getDealsRequest.toString() ) );
+        // System.out.println( String.format( "getDealsRequest: %s",
+        // getDealsRequest.toString() ) );
 
         // TODO ENCRYPT + ACK
         WorkerQueue.SendMessage( POSTING_QUEUE, "getDeals".getBytes() );
@@ -115,7 +121,8 @@ public class BuddahService
     {
         Logger.logRequest( req, "rating" );
 
-//        System.out.println( String.format( "ratingRequest: %s", ratingRequest.toString() ) );
+        // System.out.println( String.format( "ratingRequest: %s",
+        // ratingRequest.toString() ) );
 
         // TODO ENCRYPT + ACK
         WorkerQueue.SendMessage( POSTING_QUEUE, "rating".getBytes() );
@@ -132,7 +139,8 @@ public class BuddahService
     {
         Logger.logRequest( req, "posting" );
 
-//        System.out.println( String.format( "postingRequest: %s", postingRequest.toString() ) );
+        // System.out.println( String.format( "postingRequest: %s",
+        // postingRequest.toString() ) );
 
         // TODO ENCRYPT + ACK
         WorkerQueue.SendMessage( POSTING_QUEUE, "posting".getBytes() );
@@ -151,7 +159,8 @@ public class BuddahService
     {
         Logger.logRequest( req, "viewPost" );
 
-//        System.out.println( String.format( "viewPostRequest: %s", viewPostRequest.toString() ) );
+        // System.out.println( String.format( "viewPostRequest: %s",
+        // viewPostRequest.toString() ) );
 
         // TODO ENCRYPT + ACK
         WorkerQueue.SendMessage( POSTING_QUEUE, "viewPost".getBytes() );
