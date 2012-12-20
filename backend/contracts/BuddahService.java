@@ -95,7 +95,7 @@ public class BuddahService
         return response;
     }
 
-    @GET
+    @POST
     @Path( "getDeals" )
     @Consumes( { MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON } )
     public GetDealsResponse getDeals( @Context HttpServletRequest req, GetDealsRequest getDealsRequest )
