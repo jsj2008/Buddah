@@ -8,6 +8,8 @@ import model.services.Position;
 public class GetDealsRequest
 {
     private String userId;
+    private double yOffset;
+    private double xOffset;
     private Position position;
 
     public GetDealsRequest()
@@ -32,6 +34,26 @@ public class GetDealsRequest
     public void setUserId( String userId )
     {
         this.userId = userId;
+    }
+
+    public double getyOffset()
+    {
+        return yOffset;
+    }
+
+    public void setyOffset( double yOffset )
+    {
+        this.yOffset = yOffset;
+    }
+
+    public double getxOffset()
+    {
+        return xOffset;
+    }
+
+    public void setxOffset( double xOffset )
+    {
+        this.xOffset = xOffset;
     }
     
 }
