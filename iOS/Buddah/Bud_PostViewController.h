@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "postData.h"
+#import <RestKit/RestKit.h>
+#import "Response_Request.h"
 #import <QuartzCore/QuartzCore.h>
+#import <CoreLocation/CoreLocation.h>
+#import "RestfulCalls.h"
 
 @interface Bud_PostViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UITextField *PriceText;
@@ -19,8 +22,8 @@
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 
 
-@property (strong, nonatomic) postData* post;
--(void) prefillPost:(postData*)postData;
+@property (strong, nonatomic) Listing* post;
+-(void) prefillPost:(Listing*)postData;
 
 - (void)scrollViewTapped:(UITapGestureRecognizer*)recognizer;
 @end
