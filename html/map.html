@@ -9,20 +9,26 @@
 <link rel="stylesheet" type="text/css" href="css/map.css">
 
 	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<script src="./js/buddah.js"></script>
 	<script src="./js/squares.js"></script>
 	<script src="./js/maps.js"></script>
+	<script src="./js/cookies.js"></script>
     <script type="text/javascript"
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9hEq3umI88HINmlq5l-CIxJWy7wD-XcA&sensor=true">
     </script>
 	<script type="text/javascript">
 		window.onload = function() {
 			initMap();
+			setCookie("key", "value");
+			getCookie("key");
 
 			initSquare("c2",1,1);
 			initSquare("c3",1,1);
 			initSquare("c4",1,1);
 			activeContent = document.getElementById("content_sq1");
 			windowResize("content");
+			initForms();
 		}
 	</script>
 </head>
@@ -69,6 +75,11 @@
 				start time: <input type="date" name="n2">
 						<input type="time" name="n2"> <br>
 				length of posting: <input type="text" name="n2"> <br>
+				<input type="submit">
+			</form>
+
+			<form id="initiateRegisterRequest">
+				numba: <input id="testid" type="text" name="cellphone"><br>
 				<input type="submit">
 			</form>
 		</div>
