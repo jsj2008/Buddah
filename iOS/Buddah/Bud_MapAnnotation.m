@@ -11,24 +11,24 @@
 @implementation Bud_MapAnnotation
 @synthesize deal = _deal;
 
-+ (Bud_MapAnnotation *)annotationForDeal:(dealData *)deal{
++ (Bud_MapAnnotation *)annotationForDeal:(Listing *)deal{
     Bud_MapAnnotation *annotation = [[Bud_MapAnnotation alloc] init];
     annotation.deal = deal;
     return annotation;
 }
 
 - (NSString *)title{
-    return self.deal.priceText;
+    return self.deal.username;
 }
 
 - (NSString *)subtitle{
-    return self.deal.descriptionText;
+    return [self.deal.price stringValue];
 }
 
 - (CLLocationCoordinate2D)coordinate{
     CLLocationCoordinate2D coordinate;
-    coordinate.latitude = self.deal.latitude;
-    coordinate.longitude = self.deal.longitude;
+    coordinate.latitude = [self.deal.position.latitude doubleValue];
+    coordinate.longitude = [self.deal.position.longitude doubleValue];
     return coordinate;
 }
 

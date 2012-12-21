@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "dealData.h"
 #import "Bud_MapAnnotation.h"
+#import "Response_Request.h"
+#import "RestfulCalls.h"
 
 @interface Bud_MapViewController : UIViewController
 

@@ -12,7 +12,9 @@
 
 @interface Bud_MapViewController () <MKMapViewDelegate>
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
-@property (strong, nonatomic) dealData *dealToDisplay;
+@property (strong, nonatomic) CLLocation *userLoc;
+@property (strong, nonatomic) Listing *dealToDisplay;
+@property (nonatomic) BOOL haveFoundFirstLocation;
 @end
 
 @implementation Bud_MapViewController
@@ -44,6 +46,7 @@
 
 /* Map View Delegate methods */
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
+    if(annotation == self.mapView.userLocation) return nil;
     MKAnnotationView *aView = [mapView dequeueReusableAnnotationViewWithIdentifier:@"MapVC"];
     if(!aView){
         aView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"MapVC"];
@@ -78,12 +81,43 @@
     return self;
 }
 
+
+- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation{
+    if(!self.haveFoundFirstLocation){
+        [self.mapView setRegion:MKCoordinateRegionMake(CLLocationCoordinate2DMake(userLocation.location.coordinate.latitude, userLocation.location.coordinate.longitude), MKCoordinateSpanMake(1, 1))];
+        self.userLoc = userLocation.location;
+        self.haveFoundFirstLocation = YES;
+        
+        //now that we know where we are, let's find some deals!
+        GetDeals *deals = [[GetDeals alloc] init];
+        deals.userId = [RestfulCalls getUserID];
+        Position *pos = [[Position alloc] init];
+        pos.latitude = [[NSNumber alloc]initWithDouble:self.userLoc.coordinate.latitude];
+        pos.longitude = [[NSNumber alloc]initWithDouble:self.userLoc.coordinate.longitude];
+        deals.position = pos;
+        deals.xOffset = [[NSNumber alloc]initWithDouble:2.0];
+        deals.yOffset = [[NSNumber alloc] initWithDouble:2.0];
+        GetDeals *result = [RestfulCalls getDealsRequest:deals];
+        if(result){
+            NSLog(@"Got result from getDealsRequest, count = %u", result.listings.count);
+            if (result.listings.count > 0){
+                NSMutableArray *annotes = [[NSMutableArray alloc] initWithCapacity:[result.listings count]];
+                for(int i = 0; i < result.listings.count; i++){
+                [annotes addObject:[Bud_MapAnnotation annotationForDeal:[result.listings objectAtIndex:i]]];
+                }
+                self.annotations = annotes;
+            }
+        }
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
 	// Do any additional setup after loading the view.
     self.mapView.delegate = self;
-    /* create a few fake annotations for testing */
+    /* create a few fake annotations for testing 
     dealData * deal1 = [[dealData alloc] init];
     deal1.descriptionText = @"suck suck";
     deal1.priceText = @"21.42";
@@ -120,7 +154,7 @@
     [annotes addObject:[Bud_MapAnnotation annotationForDeal:deal1]];
     [annotes addObject:[Bud_MapAnnotation annotationForDeal:deal2]];
     [annotes addObject:[Bud_MapAnnotation annotationForDeal:deal3]];
-    self.annotations = annotes;
+    self.annotations = annotes;*/
 }
 
 - (void)didReceiveMemoryWarning
