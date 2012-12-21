@@ -7,11 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Resources.h"
 #import <MapKit/MapKit.h>
 #import "dealData.h"
 
 @interface Bud_MapAnnotation : NSObject <MKAnnotation>
 
-+ (Bud_MapAnnotation *)annotationForDeal:(dealData *)deal;
-@property (nonatomic, strong) dealData *deal;
++ (Bud_MapAnnotation *)annotationForDeal:(Listing *)deal;
+@property (nonatomic, strong) Listing *deal;
 @end
