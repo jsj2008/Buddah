@@ -81,9 +81,12 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="MNe-hv-80j">
+                            <scrollView autoresizesSubviews="NO" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="MNe-hv-80j">
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="38m-VK-B1n">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="274" id="MCR-ni-U1s"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                         <connections>
@@ -112,69 +115,11 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="JB2-J5-ecE">
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="216" id="3N1-xB-NZG"/>
-                                        </constraints>
-                                        <date key="date" timeIntervalSinceReferenceDate="376120318.81443799">
-                                            <!--2012-12-02 05:51:58 +0000-->
-                                        </date>
-                                        <timeZone key="timeZone" name="America/Los_Angeles">
-                                            <mutableData key="data">
-VFppZgAAAAAAAAAAAAAAAAAAAAAAAAAEAAAABAAAAAAAAAC5AAAABAAAABCepkign7sVkKCGKqChmveQ
-y4kaoNIj9HDSYSYQ1v50INiArZDa/tGg28CQENzes6DdqayQ3r6VoN+JjpDgnneg4WlwkOJ+WaDjSVKQ
-5F47oOUpNJDmR1gg5xJREOgnOiDo8jMQ6gccIOrSFRDr5v4g7LH3EO3G4CDukdkQ76/8oPBxuxDxj96g
-8n/BkPNvwKD0X6OQ9U+ioPY/hZD3L4Sg+CiiEPkPZqD6CIQQ+viDIPvoZhD82GUg/chIEP64RyD/qCoQ
-AJgpIAGIDBACeAsgA3EokARhJ6AFUQqQBkEJoAcw7JAHjUOgCRDOkAmtvyAK8LCQC+CvoAzZzRANwJGg
-DrmvEA+priAQmZEQEYmQIBJ5cxATaXIgFFlVEBVJVCAWOTcQFyk2IBgiU5AZCRggGgI1kBryNKAb4heQ
-HNIWoB3B+ZAesfigH6HbkCB2KyAhgb2QIlYNICNq2hAkNe8gJUq8ECYV0SAnKp4QJ/7toCkKgBAp3s+g
-KupiECu+saAs036QLZ6ToC6zYJAvfnWgMJNCkDFnkiAycySQM0d0IDRTBpA1J1YgNjLokDcHOCA4HAUQ
-OOcaIDn75xA6xvwgO9vJEDywGKA9u6sQPo/6oD+bjRBAb9ygQYSpkEJPvqBDZIuQRC+goEVEbZBF89Mg
-Ry2KEEfTtSBJDWwQSbOXIErtThBLnLOgTNZqkE18laBOtkyQT1x3oFCWLpBRPFmgUnYQkFMcO6BUVfKQ
-VPwdoFY11JBW5TogWB7xEFjFHCBZ/tMQWqT+IFvetRBchOAgXb6XEF5kwiBfnnkQYE3eoGGHlZBiLcCg
-Y2d3kGQNoqBlR1mQZe2EoGcnO5BnzWagaQcdkGmtSKBq5v+Qa5ZlIGzQHBBtdkcgbq/+EG9WKSBwj+AQ
-cTYLIHJvwhBzFe0gdE+kEHT/CaB2OMCQdt7roHgYopB4vs2gefiEkHqer6B72GaQfH6RoH24SJB+XnOg
-f5gqkAABAAECAwEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
-AQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
-AQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
-AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
-</mutableData>
-                                        </timeZone>
-                                    </datePicker>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Start Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z92-2p-lzX">
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="P75-HK-Udw">
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="216" id="KUr-V8-IuU"/>
-                                        </constraints>
-                                        <date key="date" timeIntervalSinceReferenceDate="376120771.07903999">
-                                            <!--2012-12-02 05:59:31 +0000-->
-                                        </date>
-                                        <timeZone key="timeZone" name="America/Los_Angeles">
-                                            <mutableData key="data">
-VFppZgAAAAAAAAAAAAAAAAAAAAAAAAAEAAAABAAAAAAAAAC5AAAABAAAABCepkign7sVkKCGKqChmveQ
-y4kaoNIj9HDSYSYQ1v50INiArZDa/tGg28CQENzes6DdqayQ3r6VoN+JjpDgnneg4WlwkOJ+WaDjSVKQ
-5F47oOUpNJDmR1gg5xJREOgnOiDo8jMQ6gccIOrSFRDr5v4g7LH3EO3G4CDukdkQ76/8oPBxuxDxj96g
-8n/BkPNvwKD0X6OQ9U+ioPY/hZD3L4Sg+CiiEPkPZqD6CIQQ+viDIPvoZhD82GUg/chIEP64RyD/qCoQ
-AJgpIAGIDBACeAsgA3EokARhJ6AFUQqQBkEJoAcw7JAHjUOgCRDOkAmtvyAK8LCQC+CvoAzZzRANwJGg
-DrmvEA+priAQmZEQEYmQIBJ5cxATaXIgFFlVEBVJVCAWOTcQFyk2IBgiU5AZCRggGgI1kBryNKAb4heQ
-HNIWoB3B+ZAesfigH6HbkCB2KyAhgb2QIlYNICNq2hAkNe8gJUq8ECYV0SAnKp4QJ/7toCkKgBAp3s+g
-KupiECu+saAs036QLZ6ToC6zYJAvfnWgMJNCkDFnkiAycySQM0d0IDRTBpA1J1YgNjLokDcHOCA4HAUQ
-OOcaIDn75xA6xvwgO9vJEDywGKA9u6sQPo/6oD+bjRBAb9ygQYSpkEJPvqBDZIuQRC+goEVEbZBF89Mg
-Ry2KEEfTtSBJDWwQSbOXIErtThBLnLOgTNZqkE18laBOtkyQT1x3oFCWLpBRPFmgUnYQkFMcO6BUVfKQ
-VPwdoFY11JBW5TogWB7xEFjFHCBZ/tMQWqT+IFvetRBchOAgXb6XEF5kwiBfnnkQYE3eoGGHlZBiLcCg
-Y2d3kGQNoqBlR1mQZe2EoGcnO5BnzWagaQcdkGmtSKBq5v+Qa5ZlIGzQHBBtdkcgbq/+EG9WKSBwj+AQ
-cTYLIHJvwhBzFe0gdE+kEHT/CaB2OMCQdt7roHgYopB4vs2gefiEkHqer6B72GaQfH6RoH24SJB+XnOg
-f5gqkAABAAECAwEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
-AQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
-AQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
-AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
-</mutableData>
-                                        </timeZone>
-                                    </datePicker>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="End Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bGR-Aw-tlh">
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -191,34 +136,123 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                             <outlet property="delegate" destination="I8z-Kh-a2e" id="8e4-jA-0WQ"/>
                                         </connections>
                                     </textView>
+                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="u1v-3X-veo">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="216" id="pqu-Qh-drl"/>
+                                        </constraints>
+                                        <date key="date" timeIntervalSinceReferenceDate="376539858.539837">
+                                            <!--2012-12-07 02:24:18 +0000-->
+                                        </date>
+                                        <timeZone key="timeZone" name="America/Los_Angeles">
+                                            <data key="data">
+VFppZgAAAAAAAAAAAAAAAAAAAAAAAAAEAAAABAAAAAAAAAC5AAAABAAAABCepkign7sVkKCGKqChmveQ
+y4kaoNIj9HDSYSYQ1v50INiArZDa/tGg28CQENzes6DdqayQ3r6VoN+JjpDgnneg4WlwkOJ+WaDjSVKQ
+5F47oOUpNJDmR1gg5xJREOgnOiDo8jMQ6gccIOrSFRDr5v4g7LH3EO3G4CDukdkQ76/8oPBxuxDxj96g
+8n/BkPNvwKD0X6OQ9U+ioPY/hZD3L4Sg+CiiEPkPZqD6CIQQ+viDIPvoZhD82GUg/chIEP64RyD/qCoQ
+AJgpIAGIDBACeAsgA3EokARhJ6AFUQqQBkEJoAcw7JAHjUOgCRDOkAmtvyAK8LCQC+CvoAzZzRANwJGg
+DrmvEA+priAQmZEQEYmQIBJ5cxATaXIgFFlVEBVJVCAWOTcQFyk2IBgiU5AZCRggGgI1kBryNKAb4heQ
+HNIWoB3B+ZAesfigH6HbkCB2KyAhgb2QIlYNICNq2hAkNe8gJUq8ECYV0SAnKp4QJ/7toCkKgBAp3s+g
+KupiECu+saAs036QLZ6ToC6zYJAvfnWgMJNCkDFnkiAycySQM0d0IDRTBpA1J1YgNjLokDcHOCA4HAUQ
+OOcaIDn75xA6xvwgO9vJEDywGKA9u6sQPo/6oD+bjRBAb9ygQYSpkEJPvqBDZIuQRC+goEVEbZBF89Mg
+Ry2KEEfTtSBJDWwQSbOXIErtThBLnLOgTNZqkE18laBOtkyQT1x3oFCWLpBRPFmgUnYQkFMcO6BUVfKQ
+VPwdoFY11JBW5TogWB7xEFjFHCBZ/tMQWqT+IFvetRBchOAgXb6XEF5kwiBfnnkQYE3eoGGHlZBiLcCg
+Y2d3kGQNoqBlR1mQZe2EoGcnO5BnzWagaQcdkGmtSKBq5v+Qa5ZlIGzQHBBtdkcgbq/+EG9WKSBwj+AQ
+cTYLIHJvwhBzFe0gdE+kEHT/CaB2OMCQdt7roHgYopB4vs2gefiEkHqer6B72GaQfH6RoH24SJB+XnOg
+f5gqkAABAAECAwEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
+AQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
+AQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
+AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
+</data>
+                                        </timeZone>
+                                    </datePicker>
+                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="dwB-Sm-VDN">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="216" id="PrD-ft-UMb"/>
+                                        </constraints>
+                                        <date key="date" timeIntervalSinceReferenceDate="376539876.701024">
+                                            <!--2012-12-07 02:24:36 +0000-->
+                                        </date>
+                                        <timeZone key="timeZone" name="America/Los_Angeles">
+                                            <data key="data">
+VFppZgAAAAAAAAAAAAAAAAAAAAAAAAAEAAAABAAAAAAAAAC5AAAABAAAABCepkign7sVkKCGKqChmveQ
+y4kaoNIj9HDSYSYQ1v50INiArZDa/tGg28CQENzes6DdqayQ3r6VoN+JjpDgnneg4WlwkOJ+WaDjSVKQ
+5F47oOUpNJDmR1gg5xJREOgnOiDo8jMQ6gccIOrSFRDr5v4g7LH3EO3G4CDukdkQ76/8oPBxuxDxj96g
+8n/BkPNvwKD0X6OQ9U+ioPY/hZD3L4Sg+CiiEPkPZqD6CIQQ+viDIPvoZhD82GUg/chIEP64RyD/qCoQ
+AJgpIAGIDBACeAsgA3EokARhJ6AFUQqQBkEJoAcw7JAHjUOgCRDOkAmtvyAK8LCQC+CvoAzZzRANwJGg
+DrmvEA+priAQmZEQEYmQIBJ5cxATaXIgFFlVEBVJVCAWOTcQFyk2IBgiU5AZCRggGgI1kBryNKAb4heQ
+HNIWoB3B+ZAesfigH6HbkCB2KyAhgb2QIlYNICNq2hAkNe8gJUq8ECYV0SAnKp4QJ/7toCkKgBAp3s+g
+KupiECu+saAs036QLZ6ToC6zYJAvfnWgMJNCkDFnkiAycySQM0d0IDRTBpA1J1YgNjLokDcHOCA4HAUQ
+OOcaIDn75xA6xvwgO9vJEDywGKA9u6sQPo/6oD+bjRBAb9ygQYSpkEJPvqBDZIuQRC+goEVEbZBF89Mg
+Ry2KEEfTtSBJDWwQSbOXIErtThBLnLOgTNZqkE18laBOtkyQT1x3oFCWLpBRPFmgUnYQkFMcO6BUVfKQ
+VPwdoFY11JBW5TogWB7xEFjFHCBZ/tMQWqT+IFvetRBchOAgXb6XEF5kwiBfnnkQYE3eoGGHlZBiLcCg
+Y2d3kGQNoqBlR1mQZe2EoGcnO5BnzWagaQcdkGmtSKBq5v+Qa5ZlIGzQHBBtdkcgbq/+EG9WKSBwj+AQ
+cTYLIHJvwhBzFe0gdE+kEHT/CaB2OMCQdt7roHgYopB4vs2gefiEkHqer6B72GaQfH6RoH24SJB+XnOg
+f5gqkAABAAECAwEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
+AQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
+AQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
+AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
+</data>
+                                        </timeZone>
+                                    </datePicker>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WuW-ms-fRq">
+                                        <color key="backgroundColor" red="1" green="0.91860063597076158" blue="0.93113491741406562" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="143" id="4hI-sl-uDv"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                                        <state key="normal" title="Use Current Location">
+                                            <color key="titleColor" red="0.19607843137254902" green="0.30980392156862746" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="useCurrentLocation" destination="I8z-Kh-a2e" eventType="touchUpInside" id="ahu-th-GFh"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XLm-sY-n3c">
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="Preview">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="previewPost:" destination="I8z-Kh-a2e" eventType="touchUpInside" id="qCo-dX-rtw"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="pHT-i3-urf" firstAttribute="leading" secondItem="MNe-hv-80j" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="1sL-UX-CgK"/>
-                                    <constraint firstItem="ccG-d3-0Uq" firstAttribute="top" secondItem="MNe-hv-80j" secondAttribute="top" constant="193" id="4ou-3B-90b"/>
-                                    <constraint firstAttribute="trailing" secondItem="Ns6-8R-loI" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="5IF-3r-zCC"/>
-                                    <constraint firstItem="RDl-xf-8dG" firstAttribute="leading" secondItem="MNe-hv-80j" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="5XY-Ml-aLQ"/>
+                                    <constraint firstItem="WuW-ms-fRq" firstAttribute="top" secondItem="MNe-hv-80j" secondAttribute="top" constant="226" id="2Tt-Of-49q"/>
                                     <constraint firstItem="Z92-2p-lzX" firstAttribute="leading" secondItem="MNe-hv-80j" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="6co-Sw-qdR"/>
-                                    <constraint firstItem="JB2-J5-ecE" firstAttribute="leading" secondItem="MNe-hv-80j" secondAttribute="leading" type="default" id="BaD-lq-tX1"/>
-                                    <constraint firstItem="P75-HK-Udw" firstAttribute="trailing" secondItem="MNe-hv-80j" secondAttribute="trailing" type="default" id="EPq-zD-w4L"/>
-                                    <constraint firstItem="7Px-CX-luo" firstAttribute="top" secondItem="MNe-hv-80j" secondAttribute="top" constant="111" id="EWA-ig-b2p"/>
-                                    <constraint firstItem="JB2-J5-ecE" firstAttribute="top" secondItem="MNe-hv-80j" secondAttribute="top" constant="288" id="G0H-lo-igg"/>
-                                    <constraint firstItem="JB2-J5-ecE" firstAttribute="trailing" secondItem="MNe-hv-80j" secondAttribute="trailing" type="default" id="JLX-hm-Yay"/>
-                                    <constraint firstItem="P75-HK-Udw" firstAttribute="leading" secondItem="MNe-hv-80j" secondAttribute="leading" type="default" id="JqO-mW-lTE"/>
-                                    <constraint firstItem="Ns6-8R-loI" firstAttribute="top" secondItem="MNe-hv-80j" secondAttribute="top" constant="134" id="OH9-mw-KX4"/>
-                                    <constraint firstItem="Ns6-8R-loI" firstAttribute="leading" secondItem="MNe-hv-80j" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="R1a-0u-vwJ"/>
+                                    <constraint firstItem="RDl-xf-8dG" firstAttribute="trailing" secondItem="Ns6-8R-loI" secondAttribute="trailing" type="default" id="73d-mp-meE"/>
+                                    <constraint firstAttribute="trailing" secondItem="38m-VK-B1n" secondAttribute="trailing" constant="26" id="7TA-ks-8Ad"/>
+                                    <constraint firstItem="Z92-2p-lzX" firstAttribute="top" secondItem="MNe-hv-80j" secondAttribute="top" constant="279" id="Ab4-LQ-4Xf"/>
+                                    <constraint firstItem="WuW-ms-fRq" firstAttribute="trailing" secondItem="RDl-xf-8dG" secondAttribute="trailing" type="default" id="DkL-rA-Mxh"/>
+                                    <constraint firstItem="u1v-3X-veo" firstAttribute="leading" secondItem="MNe-hv-80j" secondAttribute="leading" type="default" id="FPQ-Ka-CBu"/>
+                                    <constraint firstAttribute="bottom" secondItem="XLm-sY-n3c" secondAttribute="bottom" constant="636" id="Kfe-Kj-SaA"/>
+                                    <constraint firstItem="pHT-i3-urf" firstAttribute="top" secondItem="MNe-hv-80j" secondAttribute="top" constant="20" symbolic="YES" type="default" id="Kif-1N-eY5"/>
+                                    <constraint firstItem="Ns6-8R-loI" firstAttribute="top" secondItem="MNe-hv-80j" secondAttribute="top" constant="120" id="Pkj-gE-mis"/>
+                                    <constraint firstItem="Ns6-8R-loI" firstAttribute="leading" secondItem="MNe-hv-80j" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Q9R-Sc-CPR"/>
+                                    <constraint firstItem="u1v-3X-veo" firstAttribute="top" secondItem="MNe-hv-80j" secondAttribute="top" constant="318" id="QUZ-Qr-w78"/>
                                     <constraint firstItem="38m-VK-B1n" firstAttribute="top" secondItem="pHT-i3-urf" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="RYk-9V-23U"/>
-                                    <constraint firstItem="pHT-i3-urf" firstAttribute="top" secondItem="MNe-hv-80j" secondAttribute="top" constant="39" id="aDs-b9-44l"/>
-                                    <constraint firstItem="RDl-xf-8dG" firstAttribute="top" secondItem="ccG-d3-0Uq" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="b92-yi-yxh"/>
-                                    <constraint firstItem="38m-VK-B1n" firstAttribute="leading" secondItem="MNe-hv-80j" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="gD8-Xb-Pr9"/>
+                                    <constraint firstItem="RDl-xf-8dG" firstAttribute="top" secondItem="MNe-hv-80j" secondAttribute="top" constant="194" id="Zan-LE-gCS"/>
+                                    <constraint firstItem="ccG-d3-0Uq" firstAttribute="top" secondItem="Ns6-8R-loI" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="bNc-vT-aBc"/>
+                                    <constraint firstItem="dwB-Sm-VDN" firstAttribute="top" secondItem="bGR-Aw-tlh" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="eAX-jT-JV1"/>
                                     <constraint firstItem="7Px-CX-luo" firstAttribute="leading" secondItem="MNe-hv-80j" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="ggq-hO-sI3"/>
-                                    <constraint firstItem="Z92-2p-lzX" firstAttribute="top" secondItem="MNe-hv-80j" secondAttribute="top" constant="266" id="hTz-ex-3Jq"/>
-                                    <constraint firstItem="JB2-J5-ecE" firstAttribute="centerX" secondItem="MNe-hv-80j" secondAttribute="centerX" type="default" id="hbV-eT-nj7"/>
-                                    <constraint firstItem="bGR-Aw-tlh" firstAttribute="top" secondItem="MNe-hv-80j" secondAttribute="top" constant="522" id="hcO-wv-eYA"/>
                                     <constraint firstItem="ccG-d3-0Uq" firstAttribute="leading" secondItem="MNe-hv-80j" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="icy-LQ-HEE"/>
-                                    <constraint firstAttribute="trailing" secondItem="38m-VK-B1n" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="mj1-9r-V6w"/>
-                                    <constraint firstItem="P75-HK-Udw" firstAttribute="top" secondItem="bGR-Aw-tlh" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="nif-0S-qtj"/>
-                                    <constraint firstAttribute="trailing" secondItem="RDl-xf-8dG" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="umF-qs-oqA"/>
-                                    <constraint firstItem="JB2-J5-ecE" firstAttribute="bottom" secondItem="MNe-hv-80j" secondAttribute="bottom" type="default" id="zQG-91-rzw"/>
+                                    <constraint firstItem="38m-VK-B1n" firstAttribute="trailing" secondItem="Ns6-8R-loI" secondAttribute="trailing" type="default" id="kIR-En-6UA"/>
+                                    <constraint firstItem="7Px-CX-luo" firstAttribute="top" secondItem="MNe-hv-80j" secondAttribute="top" constant="92" id="ktJ-4M-4kn"/>
+                                    <constraint firstItem="38m-VK-B1n" firstAttribute="leading" secondItem="MNe-hv-80j" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="ooO-jz-BF3"/>
+                                    <constraint firstItem="XLm-sY-n3c" firstAttribute="centerX" secondItem="MNe-hv-80j" secondAttribute="centerX" type="default" id="wId-rg-EeI"/>
+                                    <constraint firstItem="dwB-Sm-VDN" firstAttribute="leading" secondItem="MNe-hv-80j" secondAttribute="leading" type="default" id="wll-Gy-Ep4"/>
+                                    <constraint firstItem="bGR-Aw-tlh" firstAttribute="top" secondItem="u1v-3X-veo" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="xFo-eJ-ZjE"/>
+                                    <constraint firstItem="RDl-xf-8dG" firstAttribute="leading" secondItem="MNe-hv-80j" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="ydC-Hv-sUt"/>
+                                    <constraint firstItem="XLm-sY-n3c" firstAttribute="top" secondItem="MNe-hv-80j" secondAttribute="top" constant="821" id="ymn-8a-blr"/>
                                     <constraint firstItem="bGR-Aw-tlh" firstAttribute="leading" secondItem="MNe-hv-80j" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="zWG-Ds-bez"/>
                                 </constraints>
                                 <connections>
@@ -228,25 +262,115 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="MNe-hv-80j" firstAttribute="bottom" secondItem="5t4-9R-CFp" secondAttribute="bottom" type="default" id="L0l-Mt-4p5"/>
-                            <constraint firstItem="MNe-hv-80j" firstAttribute="top" secondItem="5t4-9R-CFp" secondAttribute="top" type="default" id="SQ1-1P-Qsx"/>
+                            <constraint firstItem="MNe-hv-80j" firstAttribute="top" secondItem="5t4-9R-CFp" secondAttribute="top" type="default" id="7H3-y2-Hsh"/>
                             <constraint firstItem="MNe-hv-80j" firstAttribute="trailing" secondItem="5t4-9R-CFp" secondAttribute="trailing" type="default" id="UJm-Ug-0pW"/>
+                            <constraint firstAttribute="bottom" secondItem="MNe-hv-80j" secondAttribute="bottom" constant="4" id="XcG-or-0wl"/>
                             <constraint firstItem="MNe-hv-80j" firstAttribute="leading" secondItem="5t4-9R-CFp" secondAttribute="leading" type="default" id="Xn1-mB-QAT"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="r6w-cz-t3x"/>
                     <connections>
                         <outlet property="DescriptionText" destination="Ns6-8R-loI" id="a1Y-DN-DX2"/>
-                        <outlet property="EndDate" destination="P75-HK-Udw" id="6J1-2e-VlL"/>
+                        <outlet property="EndDate" destination="dwB-Sm-VDN" id="Zjt-v9-Cgd"/>
                         <outlet property="LocationText" destination="RDl-xf-8dG" id="1fF-Kn-MZe"/>
                         <outlet property="PriceText" destination="38m-VK-B1n" id="w6U-2F-Sse"/>
-                        <outlet property="StartDate" destination="JB2-J5-ecE" id="Gt8-Ua-cXv"/>
+                        <outlet property="StartDate" destination="u1v-3X-veo" id="gS1-HH-At5"/>
                         <outlet property="scrollView" destination="MNe-hv-80j" id="PTz-SP-W9S"/>
+                        <segue destination="Q8Y-MC-EJd" kind="push" identifier="PreviewSegue" id="oU1-Or-iKc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2j6-WR-ZHz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="761" y="395"/>
+        </scene>
+        <!--Bud Preview Controller-->
+        <scene sceneID="J77-BC-slD">
+            <objects>
+                <viewController id="Q8Y-MC-EJd" customClass="Bud_PreviewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="LGh-Xy-BaM">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Price: $" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T1T-ZV-HBM">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="133" id="37o-8k-Aan"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Starts: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Efg-CO-4j1">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Ends: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RmE-Qz-fvv">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Description: " translatesAutoresizingMaskIntoConstraints="NO" id="f0I-75-QmA">
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="91" id="irI-fn-SjH"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Location: " lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="273" translatesAutoresizingMaskIntoConstraints="NO" id="J13-TX-SVK">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="41" id="lam-qL-woJ"/>
+                                    <constraint firstAttribute="width" constant="273" id="s3B-8j-Bzs"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f0l-8T-Zje">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Post">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="postButton" destination="Q8Y-MC-EJd" eventType="touchUpInside" id="KdX-gH-n2H"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="f0I-75-QmA" firstAttribute="top" secondItem="LGh-Xy-BaM" secondAttribute="top" constant="54" id="3tk-wy-kbH"/>
+                            <constraint firstAttribute="bottom" secondItem="f0l-8T-Zje" secondAttribute="bottom" constant="46" id="7Bo-Vc-0Ab"/>
+                            <constraint firstAttribute="bottom" secondItem="Efg-CO-4j1" secondAttribute="bottom" constant="201" id="I98-uB-7ls"/>
+                            <constraint firstAttribute="trailing" secondItem="f0l-8T-Zje" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="RaJ-WB-Mre"/>
+                            <constraint firstItem="Efg-CO-4j1" firstAttribute="leading" secondItem="LGh-Xy-BaM" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="WsN-m9-lJR"/>
+                            <constraint firstItem="J13-TX-SVK" firstAttribute="top" secondItem="LGh-Xy-BaM" secondAttribute="top" constant="159" id="byi-VH-YND"/>
+                            <constraint firstAttribute="bottom" secondItem="RmE-Qz-fvv" secondAttribute="bottom" constant="153" id="fMZ-wO-Tap"/>
+                            <constraint firstAttribute="trailing" secondItem="RmE-Qz-fvv" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="hHb-a9-wkW"/>
+                            <constraint firstItem="RmE-Qz-fvv" firstAttribute="leading" secondItem="LGh-Xy-BaM" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="n3x-ey-HEV"/>
+                            <constraint firstItem="f0I-75-QmA" firstAttribute="leading" secondItem="LGh-Xy-BaM" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="q2t-3K-uxs"/>
+                            <constraint firstItem="T1T-ZV-HBM" firstAttribute="top" secondItem="LGh-Xy-BaM" secondAttribute="top" constant="20" symbolic="YES" type="default" id="qFy-o4-jDS"/>
+                            <constraint firstItem="J13-TX-SVK" firstAttribute="leading" secondItem="LGh-Xy-BaM" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="wDs-Tc-gmf"/>
+                            <constraint firstAttribute="trailing" secondItem="f0I-75-QmA" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="wtr-Bn-QWP"/>
+                            <constraint firstItem="Efg-CO-4j1" firstAttribute="trailing" secondItem="J13-TX-SVK" secondAttribute="trailing" type="default" id="wvc-21-6QE"/>
+                            <constraint firstItem="T1T-ZV-HBM" firstAttribute="leading" secondItem="LGh-Xy-BaM" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="zZR-zZ-Nns"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Y7s-mB-NqX"/>
+                    <connections>
+                        <outlet property="descriptionView" destination="f0I-75-QmA" id="qu8-aI-6aH"/>
+                        <outlet property="endLabel" destination="RmE-Qz-fvv" id="G7d-go-xw4"/>
+                        <outlet property="locationLabel" destination="J13-TX-SVK" id="a07-yR-yds"/>
+                        <outlet property="priceLabel" destination="T1T-ZV-HBM" id="17s-Ie-Jrx"/>
+                        <outlet property="startLabel" destination="Efg-CO-4j1" id="TYM-n0-nFZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qvq-PG-byC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1266" y="395"/>
         </scene>
         <!--Bud Map View Controller-->
         <scene sceneID="aTx-P6-gZe">
@@ -256,7 +380,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="cp8-Pg-451"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cp8-Pg-451"/>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -390,8 +514,21 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
             </relationships>
         </class>
+        <class className="Bud_PreviewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Bud_PreviewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="descriptionView" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="endLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="locationLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="priceLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="startLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
         <class className="Bud_ViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/Bud_ViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="viewMap:"/>
+            </relationships>
         </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>

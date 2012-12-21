@@ -8,11 +8,45 @@
 
 #import "Bud_AppDelegate.h"
 
+#define BASE_URL @"http://buddah.herokuapp.com"
+
 @implementation Bud_AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    if(![CLLocationManager locationServicesEnabled]){
+        UIAlertView *servicesDisabledAlert = [[UIAlertView alloc] initWithTitle:@"Location Services Disabled" message:@"You currently have all location services for this device disabled. If you proceed, you will be asked to confirm whether location services should be reenabled." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [servicesDisabledAlert show];
+    }
+    
     // Override point for customization after application launch.
+    // Load default defaults
+    [[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Defaults" ofType:@"plist"]]];
+    NSLog(@"aplliction did launch");
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSLog(@" is it null??? %c", [defaults boolForKey:@"isFirstLaunch"]);
+    if ([defaults boolForKey:@"isFirstLaunch"] == YES)
+    {
+        NSLog(@"Running for the first time");
+        [defaults setBool:NO forKey:@"isFirstLaunch"];
+        [defaults setBool:YES forKey:@"displayPhoneNumberPrompt"];
+        [defaults setBool:NO forKey:@"displayActivationPrompt"];
+        [defaults synchronize];
+    }
+    
+    
+    RKLogConfigureByName("RestKit/Network*", RKLogLevelTrace);
+    RKLogConfigureByName("RestKit/ObjectMapping", RKLogLevelTrace);
+    
+    NSURL *baseURL = [NSURL URLWithString:BASE_URL];
+    RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:baseURL];
+    [objectManager setRequestSerializationMIMEType:RKMIMETypeJSON];
+    [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
+    
+
+    
+    
+    
     return YES;
 }
 							

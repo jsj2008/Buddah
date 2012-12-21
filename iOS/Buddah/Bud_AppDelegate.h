@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RestKit/RestKit.h"
+#import "Response_Request.h"
 
 @interface Bud_AppDelegate : UIResponder <UIApplicationDelegate>
 
