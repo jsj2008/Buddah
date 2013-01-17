@@ -2,19 +2,19 @@ package model.services;
 
 public class Feedback
 {
-    private float rating;
+    private double rating;
     private String commentary;
     
     public Feedback()
     {
     }
 
-    public float getRating()
+    public double getRating()
     {
         return rating;
     }
 
-    public void setRating( float rating )
+    public void setRating( double rating )
     {
         this.rating = rating;
     }

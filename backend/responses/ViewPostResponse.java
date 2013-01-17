@@ -2,24 +2,27 @@ package services.responses;
 
 import java.util.ArrayList;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 import model.services.Feedback;
 
+@XmlRootElement
 public class ViewPostResponse
 {
-    ArrayList<Feedback> feedbackList;
-    
+    String guid;
+
     public ViewPostResponse()
     {
     }
 
-    public ArrayList<Feedback> getFeedbackList()
+    public String getGuid()
     {
-        return feedbackList;
+        return guid;
     }
 
-    public void setFeedbackList( ArrayList<Feedback> feedbackList )
+    public void setGuid( String guid )
     {
-        this.feedbackList = feedbackList;
+        this.guid = guid;
     }
 
 }

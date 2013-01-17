@@ -1,19 +1,16 @@
-package services.responses;
-
-import java.util.ArrayList;
+package services.requests;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-import model.services.Listing;
-
 @XmlRootElement
-public class GetDealsResponse
+public class ViewPostResultRequest
 {
     String guid;
-
-    public GetDealsResponse()
+    
+    public ViewPostResultRequest()
     {
-    }
+        // TODO Auto-generated constructor stub
+    }    
 
     public String getGuid()
     {
@@ -24,5 +21,4 @@ public class GetDealsResponse
     {
         this.guid = guid;
     }
-
 }
