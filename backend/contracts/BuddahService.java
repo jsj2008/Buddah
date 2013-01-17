@@ -16,53 +16,72 @@ import logging.Logger;
 import services.queue.*;
 import services.requests.*;
 import services.responses.*;
+import utilities.services.ServiceModifiers;
 
 // Service endpoint will be base url 'http://buddah.herokuapp.com/' followed by the @Path for the service and a specific endpoint,
 // ex initiateRegister url = 'http://buddah.herokuapp.com/services/initiateRegister'
+// 
+// All service endpoints come in pairs to deal with cross site scripting (there's probably a better way, but for now this is it)
+//
+// @OPTIONS endpoints are for browser pre-flight requests
+// @PUT, POST, GET, DELETE corresponding pairs are real requests that are made after pre-flights or directly
+
 @Path( "/services" )
 @Produces( { MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN } )
 public class BuddahService
 {
-
     private final static String ACCOUNT_QUEUE = QueueConstants.ACCOUNT_QUEUE;
     private final static String POSTING_QUEUE = QueueConstants.POSTING_QUEUE;
 
     private static Gson gson = new Gson();
 
+    @OPTIONS
+    @Path( "initiateRegister" )
+    @Consumes( { MediaType.APPLICATION_OCTET_STREAM } )
+    @Produces( { MediaType.APPLICATION_OCTET_STREAM } )
+    public Response initiateRegisterPreflight( @Context HttpServletRequest req )
+    {
+        Logger.logRequest( req, "initiateRegisterPreflight" );
+
+        return ServiceModifiers.wrapHeaders( null, MediaType.APPLICATION_OCTET_STREAM );
+    }
+
     @PUT
     @Path( "initiateRegister" )
     @Consumes( { MediaType.APPLICATION_JSON } )
     @Produces( { MediaType.APPLICATION_JSON } )
-    public InitiateRegisterResponse initiateRegister( @Context HttpServletRequest req,
-            InitiateRegisterRequest initiateRegisterRequest )
+    public Response initiateRegister( @Context HttpServletRequest req, InitiateRegisterRequest initiateRegisterRequest )
     {
         Logger.logRequest( req, "initiateRegister" );
-
-        // System.out.println( String.format( "initiateRegisterRequest: %s",
-        // initiateRegisterRequest.toString() ) );
 
         // TODO ENCRYPT + ACK
         WorkerQueue.SendMessage( ACCOUNT_QUEUE, "initiateRegister".getBytes() );
         WorkerQueue.SendMessage( ACCOUNT_QUEUE, gson.toJson( initiateRegisterRequest ).getBytes() );
 
         InitiateRegisterResponse response = new InitiateRegisterResponse();
+        response.setInstructionMessage( "Please wait for a text to arrive at your number." );
 
-        response.setInstructionMessage( "Please wait for a text to arrive at your number.  And yea, we'll make millions." );
+        return ServiceModifiers.wrapHeaders( response, MediaType.APPLICATION_JSON );
+    }
 
-        return response;
+    @OPTIONS
+    @Path( "confirmRegister" )
+    @Consumes( { MediaType.APPLICATION_OCTET_STREAM } )
+    @Produces( { MediaType.APPLICATION_OCTET_STREAM } )
+    public Response confirmRegisterPreflight( @Context HttpServletRequest req )
+    {
+        Logger.logRequest( req, "confirmRegisterPreflight" );
+
+        return ServiceModifiers.wrapHeaders( null, MediaType.APPLICATION_OCTET_STREAM );
     }
 
     @POST
     @Path( "confirmRegister" )
     @Consumes( { MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON } )
     @Produces( { MediaType.APPLICATION_JSON } )
-    public ConfirmRegisterResponse confirmRegister( @Context HttpServletRequest req,
-            ConfirmRegisterRequest confirmRegisterRequest )
+    public Response confirmRegister( @Context HttpServletRequest req, ConfirmRegisterRequest confirmRegisterRequest )
     {
         Logger.logRequest( req, "confirmRegister" );
-
-        // System.out.println( String.format( "confirmRegisterRequest: %s",
-        // confirmRegisterRequest.toString() ) );
 
         // TODO ENCRYPT + ACK
         WorkerQueue.SendMessage( ACCOUNT_QUEUE, "confirmRegister".getBytes() );
@@ -71,19 +90,27 @@ public class BuddahService
         ConfirmRegisterResponse response = new ConfirmRegisterResponse();
         response.setToken( "ABCD-EFGH-IJKL-MNOP-QRST-UVWX-YZ" );
 
-        return response;
+        return ServiceModifiers.wrapHeaders( response, MediaType.APPLICATION_JSON );
+    }
+
+    @OPTIONS
+    @Path( "login" )
+    @Consumes( { MediaType.APPLICATION_OCTET_STREAM } )
+    @Produces( { MediaType.APPLICATION_OCTET_STREAM } )
+    public Response loginPreflight( @Context HttpServletRequest req )
+    {
+        Logger.logRequest( req, "loginPreflight" );
+
+        return ServiceModifiers.wrapHeaders( null, MediaType.APPLICATION_OCTET_STREAM );
     }
 
     @POST
     @Path( "login" )
     @Consumes( { MediaType.APPLICATION_JSON } )
     @Produces( { MediaType.APPLICATION_JSON } )
-    public LoginResponse login( @Context HttpServletRequest req, LoginRequest loginRequest )
+    public Response login( @Context HttpServletRequest req, LoginRequest loginRequest )
     {
         Logger.logRequest( req, "login" );
-
-        // System.out.println( String.format( "loginRequest: %s",
-        // loginRequest.toString() ) );
 
         // TODO ENCRYPT + ACK
         WorkerQueue.SendMessage( ACCOUNT_QUEUE, "login".getBytes() );
@@ -92,18 +119,28 @@ public class BuddahService
         LoginResponse response = new LoginResponse();
         response.setResult( true );
 
-        return response;
+        return ServiceModifiers.wrapHeaders( response, MediaType.APPLICATION_JSON );
+    }
+
+    @OPTIONS
+    @Path( "getDeals" )
+    @Consumes( { MediaType.APPLICATION_OCTET_STREAM } )
+    @Produces( { MediaType.APPLICATION_OCTET_STREAM } )
+    public Response getDealsPreflight( @Context HttpServletRequest req )
+    {
+        Logger.logRequest( req, "getDealsPreflight" );
+
+        return ServiceModifiers.wrapHeaders( null, MediaType.APPLICATION_OCTET_STREAM );
     }
 
     @POST
     @Path( "getDeals" )
     @Consumes( { MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON } )
-    public GetDealsResponse getDeals( @Context HttpServletRequest req, GetDealsRequest getDealsRequest )
+    public Response getDeals( @Context HttpServletRequest req, GetDealsRequest getDealsRequest )
     {
         Logger.logRequest( req, "getDeals" );
 
-        // System.out.println( String.format( "getDealsRequest: %s",
-        // getDealsRequest.toString() ) );
+        // TODO verify token in http header
 
         // TODO ENCRYPT + ACK
         WorkerQueue.SendMessage( POSTING_QUEUE, "getDeals".getBytes() );
@@ -111,18 +148,57 @@ public class BuddahService
 
         GetDealsResponse response = new GetDealsResponse();
 
-        return response;
+        return ServiceModifiers.wrapHeaders( response, MediaType.APPLICATION_JSON );
+    }
+
+    @OPTIONS
+    @Path( "getDealsResult" )
+    @Consumes( { MediaType.APPLICATION_OCTET_STREAM } )
+    @Produces( { MediaType.APPLICATION_OCTET_STREAM } )
+    public Response getDealsResultPreflight( @Context HttpServletRequest req )
+    {
+        Logger.logRequest( req, "getDealsResultPreflight" );
+
+        return ServiceModifiers.wrapHeaders( null, MediaType.APPLICATION_OCTET_STREAM );
+    }
+
+    @POST
+    @Path( "getDealsResult" )
+    @Consumes( { MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON } )
+    public Response getDealsResult( @Context HttpServletRequest req, GetDealsResultRequest getDealsResultRequest )
+    {
+        Logger.logRequest( req, "getDealsResult" );
+
+        // TODO verify token in http header
+
+        // TODO Redis retrieval
+
+        GetDealsResultResponse response = new GetDealsResultResponse();
+
+        // TODO set additional header for whether result is in cache (to
+        // differentiate no result with null result)
+        return ServiceModifiers.wrapHeaders( response, MediaType.APPLICATION_OCTET_STREAM );
+    }
+
+    @OPTIONS
+    @Path( "rating" )
+    @Consumes( { MediaType.APPLICATION_OCTET_STREAM } )
+    @Produces( { MediaType.APPLICATION_OCTET_STREAM } )
+    public Response ratingPreflight( @Context HttpServletRequest req )
+    {
+        Logger.logRequest( req, "ratingPreflight" );
+
+        return ServiceModifiers.wrapHeaders( null, MediaType.APPLICATION_OCTET_STREAM );
     }
 
     @POST
     @Path( "rating" )
     @Consumes( { MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON } )
-    public RatingResponse rating( @Context HttpServletRequest req, RatingRequest ratingRequest )
+    public Response rating( @Context HttpServletRequest req, RatingRequest ratingRequest )
     {
         Logger.logRequest( req, "rating" );
 
-        // System.out.println( String.format( "ratingRequest: %s",
-        // ratingRequest.toString() ) );
+        // TODO verify token in http header
 
         // TODO ENCRYPT + ACK
         WorkerQueue.SendMessage( POSTING_QUEUE, "rating".getBytes() );
@@ -130,17 +206,27 @@ public class BuddahService
 
         RatingResponse response = new RatingResponse();
 
-        return response;
+        return ServiceModifiers.wrapHeaders( response, MediaType.APPLICATION_JSON );
+    }
+
+    @OPTIONS
+    @Path( "posting" )
+    @Consumes( { MediaType.APPLICATION_OCTET_STREAM } )
+    @Produces( { MediaType.APPLICATION_OCTET_STREAM } )
+    public Response postingPreflight( @Context HttpServletRequest req )
+    {
+        Logger.logRequest( req, "postingPreflight" );
+
+        return ServiceModifiers.wrapHeaders( null, MediaType.APPLICATION_OCTET_STREAM );
     }
 
     @PUT
     @Path( "posting" )
-    public PostingResponse posting( @Context HttpServletRequest req, PostingRequest postingRequest )
+    public Response posting( @Context HttpServletRequest req, PostingRequest postingRequest )
     {
         Logger.logRequest( req, "posting" );
 
-        // System.out.println( String.format( "postingRequest: %s",
-        // postingRequest.toString() ) );
+        // TODO verify token in http header
 
         // TODO ENCRYPT + ACK
         WorkerQueue.SendMessage( POSTING_QUEUE, "posting".getBytes() );
@@ -149,18 +235,28 @@ public class BuddahService
         PostingResponse response = new PostingResponse();
         response.setTimeLeft( postingRequest.getListing().getStartTime() - Calendar.getInstance().getTimeInMillis() );
 
-        return response;
+        return ServiceModifiers.wrapHeaders( response, MediaType.APPLICATION_JSON );
     }
 
-    @GET
+    @OPTIONS
+    @Path( "viewPost" )
+    @Consumes( { MediaType.APPLICATION_OCTET_STREAM } )
+    @Produces( { MediaType.APPLICATION_OCTET_STREAM } )
+    public Response viewPostPreflight( @Context HttpServletRequest req )
+    {
+        Logger.logRequest( req, "viewPostPreflight" );
+
+        return ServiceModifiers.wrapHeaders( null, MediaType.APPLICATION_OCTET_STREAM );
+    }
+
+    @POST
     @Path( "viewPost" )
     @Produces( { MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON } )
-    public ViewPostResponse viewPost( @Context HttpServletRequest req, ViewPostRequest viewPostRequest )
+    public Response viewPost( @Context HttpServletRequest req, ViewPostRequest viewPostRequest )
     {
         Logger.logRequest( req, "viewPost" );
 
-        // System.out.println( String.format( "viewPostRequest: %s",
-        // viewPostRequest.toString() ) );
+        // TODO verify token in http header
 
         // TODO ENCRYPT + ACK
         WorkerQueue.SendMessage( POSTING_QUEUE, "viewPost".getBytes() );
@@ -168,7 +264,34 @@ public class BuddahService
 
         ViewPostResponse response = new ViewPostResponse();
 
-        return response;
+        return ServiceModifiers.wrapHeaders( response, MediaType.APPLICATION_JSON );
+    }
+
+    @OPTIONS
+    @Path( "viewPostResult" )
+    @Consumes( { MediaType.APPLICATION_OCTET_STREAM } )
+    @Produces( { MediaType.APPLICATION_OCTET_STREAM } )
+    public Response viewPostResultPreflight( @Context HttpServletRequest req )
+    {
+        Logger.logRequest( req, "viewPostResultPreflight" );
+
+        return ServiceModifiers.wrapHeaders( null, MediaType.APPLICATION_OCTET_STREAM );
+    }
+
+    @POST
+    @Path( "viewPostResult" )
+    @Produces( { MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON } )
+    public Response viewPostResult( @Context HttpServletRequest req, ViewPostResultRequest viewPostResultRequest )
+    {
+        Logger.logRequest( req, "viewPostResult" );
+
+        // TODO verify token in http header
+
+        // TODO Redis retrieval
+
+        ViewPostResultResponse response = new ViewPostResultResponse();
+
+        return ServiceModifiers.wrapHeaders( response, MediaType.APPLICATION_JSON );
     }
 
 }
