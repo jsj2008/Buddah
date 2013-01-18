@@ -7,21 +7,21 @@ import model.services.Listing;
 @XmlRootElement
 public class PostingRequest
 {
-    private String userId;
+    private String userToken;
     private Listing listing;
     
     public PostingRequest()
     {
     }
 
-    public String getUserId()
+    public String getUserToken()
     {
-        return userId;
+        return userToken;
     }
 
-    public void setUserId( String userId )
+    public void setUserToken( String userToken )
     {
-        this.userId = userId;
+        this.userToken = userToken;
     }
 
     public Listing getListing()

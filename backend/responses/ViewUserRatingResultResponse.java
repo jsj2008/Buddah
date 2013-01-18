@@ -7,12 +7,23 @@ import javax.xml.bind.annotation.XmlRootElement;
 import model.services.Feedback;
 
 @XmlRootElement
-public class ViewPostResultResponse
+public class ViewUserRatingResultResponse
 {
+    boolean ready;
     ArrayList<Feedback> feedbackList;
-    
-    public ViewPostResultResponse()
+
+    public ViewUserRatingResultResponse()
     {
+    }
+
+    public boolean isReady()
+    {
+        return ready;
+    }
+
+    public void setReady( boolean ready )
+    {
+        this.ready = ready;
     }
 
     public ArrayList<Feedback> getFeedbackList()
@@ -23,4 +34,5 @@ public class ViewPostResultResponse
     public void setFeedbackList( ArrayList<Feedback> feedbackList )
     {
         this.feedbackList = feedbackList;
-    }}
+    }
+}

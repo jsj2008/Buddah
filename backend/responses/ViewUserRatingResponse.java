@@ -7,11 +7,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 import model.services.Feedback;
 
 @XmlRootElement
-public class ViewPostResponse
+public class ViewUserRatingResponse
 {
     String guid;
 
-    public ViewPostResponse()
+    public ViewUserRatingResponse()
     {
     }
 
