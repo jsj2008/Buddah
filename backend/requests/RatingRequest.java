@@ -7,22 +7,32 @@ import model.services.Feedback;
 @XmlRootElement
 public class RatingRequest
 {
-    private String userId;
-    private String username;
-    private Feedback feedback;    
-    
+    private String userToken;
+    private String usernameDealer;
+    private Feedback feedback;
+
     public RatingRequest()
     {
     }
 
-    public String getUsername()
+    public String getUserToken()
     {
-        return username;
+        return userToken;
     }
 
-    public void setUsername( String username )
+    public void setUserToken( String userToken )
     {
-        this.username = username;
+        this.userToken = userToken;
+    }
+
+    public String getUsernameDealer()
+    {
+        return usernameDealer;
+    }
+
+    public void setUsernameDealer( String usernameDealer )
+    {
+        this.usernameDealer = usernameDealer;
     }
 
     public Feedback getFeedback()
@@ -33,16 +43,6 @@ public class RatingRequest
     public void setFeedback( Feedback feedback )
     {
         this.feedback = feedback;
-    }
-
-    public String getUserId()
-    {
-        return userId;
-    }
-
-    public void setUserId( String userId )
-    {
-        this.userId = userId;
     }
 
 }

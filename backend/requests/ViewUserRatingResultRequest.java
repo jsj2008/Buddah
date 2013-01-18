@@ -3,15 +3,26 @@ package services.requests;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class ViewPostResultRequest
+public class ViewUserRatingResultRequest
 {
+    String userToken;
     String guid;
     
-    public ViewPostResultRequest()
+    public ViewUserRatingResultRequest()
     {
         // TODO Auto-generated constructor stub
     }    
+    
+    public String getUserToken()
+    {
+        return userToken;
+    }
 
+    public void setUserToken( String userToken )
+    {
+        this.userToken = userToken;
+    }
+    
     public String getGuid()
     {
         return guid;
