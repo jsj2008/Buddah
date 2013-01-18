@@ -7,7 +7,7 @@ import model.services.Position;
 @XmlRootElement
 public class GetDealsRequest
 {
-    private String userId;
+    private String userToken;
     private double yOffset;
     private double xOffset;
     private Position position;
@@ -26,14 +26,14 @@ public class GetDealsRequest
         this.position = position;
     }
 
-    public String getUserId()
+    public String getUserToken()
     {
-        return userId;
+        return userToken;
     }
 
-    public void setUserId( String userId )
+    public void setUserToken( String userToken )
     {
-        this.userId = userId;
+        this.userToken = userToken;
     }
 
     public double getyOffset()

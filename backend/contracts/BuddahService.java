@@ -1,6 +1,7 @@
 package services.contracts;
 
 import java.util.Calendar;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
@@ -56,6 +57,7 @@ public class BuddahService
 
         // TODO ENCRYPT + ACK
         WorkerQueue.SendMessage( ACCOUNT_QUEUE, "initiateRegister".getBytes() );
+        WorkerQueue.SendMessage( ACCOUNT_QUEUE, UUID.randomUUID().toString().getBytes() );
         WorkerQueue.SendMessage( ACCOUNT_QUEUE, gson.toJson( initiateRegisterRequest ).getBytes() );
 
         InitiateRegisterResponse response = new InitiateRegisterResponse();
@@ -239,57 +241,57 @@ public class BuddahService
     }
 
     @OPTIONS
-    @Path( "viewPost" )
+    @Path( "viewUserRating" )
     @Consumes( { MediaType.APPLICATION_OCTET_STREAM } )
     @Produces( { MediaType.APPLICATION_OCTET_STREAM } )
-    public Response viewPostPreflight( @Context HttpServletRequest req )
+    public Response viewUserRatingPreflight( @Context HttpServletRequest req )
     {
-        Logger.logRequest( req, "viewPostPreflight" );
+        Logger.logRequest( req, "viewUserRatingPreflight" );
 
         return ServiceModifiers.wrapHeaders( null, MediaType.APPLICATION_OCTET_STREAM );
     }
 
     @POST
-    @Path( "viewPost" )
+    @Path( "viewUserRating" )
     @Produces( { MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON } )
-    public Response viewPost( @Context HttpServletRequest req, ViewPostRequest viewPostRequest )
+    public Response viewUserRating( @Context HttpServletRequest req, ViewUserRatingRequest viewUserRatingRequest )
     {
-        Logger.logRequest( req, "viewPost" );
+        Logger.logRequest( req, "viewUserRating" );
 
         // TODO verify token in http header
 
         // TODO ENCRYPT + ACK
-        WorkerQueue.SendMessage( POSTING_QUEUE, "viewPost".getBytes() );
-        WorkerQueue.SendMessage( POSTING_QUEUE, gson.toJson( viewPostRequest ).getBytes() );
+        WorkerQueue.SendMessage( POSTING_QUEUE, "viewUserRating".getBytes() );
+        WorkerQueue.SendMessage( POSTING_QUEUE, gson.toJson( viewUserRatingRequest ).getBytes() );
 
-        ViewPostResponse response = new ViewPostResponse();
+        ViewUserRatingResponse response = new ViewUserRatingResponse();
 
         return ServiceModifiers.wrapHeaders( response, MediaType.APPLICATION_JSON );
     }
 
     @OPTIONS
-    @Path( "viewPostResult" )
+    @Path( "viewUserRatingResult" )
     @Consumes( { MediaType.APPLICATION_OCTET_STREAM } )
     @Produces( { MediaType.APPLICATION_OCTET_STREAM } )
-    public Response viewPostResultPreflight( @Context HttpServletRequest req )
+    public Response viewUserRatingResultPreflight( @Context HttpServletRequest req )
     {
-        Logger.logRequest( req, "viewPostResultPreflight" );
+        Logger.logRequest( req, "viewUserRatingResultPreflight" );
 
         return ServiceModifiers.wrapHeaders( null, MediaType.APPLICATION_OCTET_STREAM );
     }
 
     @POST
-    @Path( "viewPostResult" )
+    @Path( "viewUserRatingResult" )
     @Produces( { MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON } )
-    public Response viewPostResult( @Context HttpServletRequest req, ViewPostResultRequest viewPostResultRequest )
+    public Response viewUserRatingResult( @Context HttpServletRequest req, ViewUserRatingResultRequest viewUserRatingResultRequest )
     {
-        Logger.logRequest( req, "viewPostResult" );
+        Logger.logRequest( req, "viewUserRatingResult" );
 
         // TODO verify token in http header
 
         // TODO Redis retrieval
 
-        ViewPostResultResponse response = new ViewPostResultResponse();
+        ViewUserRatingResultResponse response = new ViewUserRatingResultResponse();
 
         return ServiceModifiers.wrapHeaders( response, MediaType.APPLICATION_JSON );
     }

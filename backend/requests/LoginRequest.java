@@ -5,24 +5,24 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class LoginRequest
 {
-    private String userId;
+    private String userToken;
 
     public LoginRequest()
     {
     }
 
-    public String getUserId()
+    public String getUserToken()
     {
-        return userId;
+        return userToken;
     }
 
-    public void setUserId( String userId )
+    public void setUserToken( String userToken )
     {
-        this.userId = userId;
+        this.userToken = userToken;
     }
 
     public String toString()
     {
-        return "userId: " + userId;
+        return "userToken: " + userToken;
     }
 }
