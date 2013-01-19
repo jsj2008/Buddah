@@ -8,6 +8,7 @@ import model.services.Position;
 public class GetDealsRequest
 {
     private String userToken;
+    private String username;
     private double yOffset;
     private double xOffset;
     private Position position;
@@ -16,15 +17,6 @@ public class GetDealsRequest
     {
     }
 
-    public Position getPosition()
-    {
-        return position;
-    }
-
-    public void setPosition( Position position )
-    {
-        this.position = position;
-    }
 
     public String getUserToken()
     {
@@ -34,6 +26,26 @@ public class GetDealsRequest
     public void setUserToken( String userToken )
     {
         this.userToken = userToken;
+    }    
+    
+    public String getUsername()
+    {
+        return username;
+    }
+
+    public void setUsername( String username )
+    {
+        this.username = username;
+    }
+    
+    public Position getPosition()
+    {
+        return position;
+    }
+
+    public void setPosition( Position position )
+    {
+        this.position = position;
     }
 
     public double getyOffset()
