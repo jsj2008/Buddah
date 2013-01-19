@@ -6,6 +6,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class ViewUserRatingResultRequest
 {
     String userToken;
+    String username;
     String guid;
     
     public ViewUserRatingResultRequest()
@@ -16,6 +17,16 @@ public class ViewUserRatingResultRequest
     public String getUserToken()
     {
         return userToken;
+    }
+    
+    public String getUsername()
+    {
+        return username;
+    }
+
+    public void setUsername( String username )
+    {
+        this.username = username;
     }
 
     public void setUserToken( String userToken )

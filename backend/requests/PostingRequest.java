@@ -8,6 +8,7 @@ import model.services.Listing;
 public class PostingRequest
 {
     private String userToken;
+    private String username;
     private Listing listing;
     
     public PostingRequest()
@@ -22,6 +23,16 @@ public class PostingRequest
     public void setUserToken( String userToken )
     {
         this.userToken = userToken;
+    }
+    
+    public String getUsername()
+    {
+        return username;
+    }
+
+    public void setUsername( String username )
+    {
+        this.username = username;
     }
 
     public Listing getListing()
