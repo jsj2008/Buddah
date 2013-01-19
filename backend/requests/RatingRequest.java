@@ -8,6 +8,7 @@ import model.services.Feedback;
 public class RatingRequest
 {
     private String userToken;
+    private String username;
     private String usernameDealer;
     private Feedback feedback;
 
@@ -23,6 +24,16 @@ public class RatingRequest
     public void setUserToken( String userToken )
     {
         this.userToken = userToken;
+    }
+    
+    public String getUsername()
+    {
+        return username;
+    }
+
+    public void setUsername( String username )
+    {
+        this.username = username;
     }
 
     public String getUsernameDealer()

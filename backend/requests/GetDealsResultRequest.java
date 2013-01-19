@@ -6,6 +6,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class GetDealsResultRequest
 {
     String userToken;
+    String username;
+    
     String guid;
     
     public GetDealsResultRequest()
@@ -16,6 +18,16 @@ public class GetDealsResultRequest
     public String getUserToken()
     {
         return userToken;
+    }
+    
+    public String getUsername()
+    {
+        return username;
+    }
+
+    public void setUsername( String username )
+    {
+        this.username = username;
     }
 
     public void setUserToken( String userToken )
