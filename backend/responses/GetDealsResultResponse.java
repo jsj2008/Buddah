@@ -1,7 +1,5 @@
 package services.responses;
 
-import java.util.ArrayList;
-
 import javax.xml.bind.annotation.XmlRootElement;
 
 import model.services.Listing;
@@ -10,7 +8,7 @@ import model.services.Listing;
 public class GetDealsResultResponse
 {
     boolean ready;
-    ArrayList<Listing> listings; 
+    Listing[] listings; 
 
     public GetDealsResultResponse()
     {
@@ -26,12 +24,12 @@ public class GetDealsResultResponse
         this.ready = ready;
     }
 
-    public ArrayList<Listing> getListings()
+    public Listing[] getListings()
     {
         return listings;
     }
 
-    public void setListings( ArrayList<Listing> listings )
+    public void setListings( Listing[] listings )
     {
         this.listings = listings;
     }
