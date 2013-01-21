@@ -1,14 +1,12 @@
 package services.responses;
 
-import java.util.ArrayList;
-
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class RatingResponse
 {
     private float averageRating;
-    private ArrayList<String> commentaryList;
+    private int numRatings;
     
     public RatingResponse()
     {
@@ -24,14 +22,14 @@ public class RatingResponse
         this.averageRating = averageRating;
     }
 
-    public ArrayList<String> getCommentaryList()
+    public int getNumRatings()
     {
-        return commentaryList;
+        return numRatings;
     }
 
-    public void setCommentaryList( ArrayList<String> commentaryList )
+    public void setNumRatings( int numRatings )
     {
-        this.commentaryList = commentaryList;
+        this.numRatings = numRatings;
     }
     
 }

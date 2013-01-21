@@ -17,6 +17,8 @@ import logging.Logger;
 import services.queue.*;
 import services.requests.*;
 import services.responses.*;
+import services.worker.AccountWorkProcessor;
+import services.worker.PostingWorkProcessor;
 import utilities.services.ServiceModifiers;
 
 // Service endpoint will be base url 'http://buddah.herokuapp.com/' followed by the @Path for the service and a specific endpoint,
@@ -55,15 +57,8 @@ public class BuddahService
     {
         Logger.logRequest( req, "initiateRegister" );
 
-        // TODO ENCRYPT + ACK
-        WorkerQueue.SendMessage( ACCOUNT_QUEUE, "initiateRegister".getBytes() );
-        WorkerQueue.SendMessage( ACCOUNT_QUEUE, UUID.randomUUID().toString().getBytes() );
-        WorkerQueue.SendMessage( ACCOUNT_QUEUE, gson.toJson( initiateRegisterRequest ).getBytes() );
-
-        InitiateRegisterResponse response = new InitiateRegisterResponse();
-        response.setInstructionMessage( "Please wait for a text to arrive at your number." );
-
-        return ServiceModifiers.wrapHeaders( response, MediaType.APPLICATION_JSON );
+        return ServiceModifiers.wrapHeaders( AccountWorkProcessor.initiateRegisterProcessor( initiateRegisterRequest ),
+                MediaType.APPLICATION_JSON );
     }
 
     @OPTIONS
@@ -85,14 +80,8 @@ public class BuddahService
     {
         Logger.logRequest( req, "confirmRegister" );
 
-        // TODO ENCRYPT + ACK
-        WorkerQueue.SendMessage( ACCOUNT_QUEUE, "confirmRegister".getBytes() );
-        WorkerQueue.SendMessage( ACCOUNT_QUEUE, gson.toJson( confirmRegisterRequest ).getBytes() );
-
-        ConfirmRegisterResponse response = new ConfirmRegisterResponse();
-        response.setToken( "ABCD-EFGH-IJKL-MNOP-QRST-UVWX-YZ" );
-
-        return ServiceModifiers.wrapHeaders( response, MediaType.APPLICATION_JSON );
+        return ServiceModifiers.wrapHeaders( AccountWorkProcessor.confirmRegisterProcessor( confirmRegisterRequest ),
+                MediaType.APPLICATION_JSON );
     }
 
     @OPTIONS
@@ -114,14 +103,8 @@ public class BuddahService
     {
         Logger.logRequest( req, "login" );
 
-        // TODO ENCRYPT + ACK
-        WorkerQueue.SendMessage( ACCOUNT_QUEUE, "login".getBytes() );
-        WorkerQueue.SendMessage( ACCOUNT_QUEUE, gson.toJson( loginRequest ).getBytes() );
-
-        LoginResponse response = new LoginResponse();
-        response.setResult( true );
-
-        return ServiceModifiers.wrapHeaders( response, MediaType.APPLICATION_JSON );
+        return ServiceModifiers.wrapHeaders( AccountWorkProcessor.loginProcessor( loginRequest ),
+                MediaType.APPLICATION_JSON );
     }
 
     @OPTIONS
@@ -142,15 +125,8 @@ public class BuddahService
     {
         Logger.logRequest( req, "getDeals" );
 
-        // TODO verify token in http header
-
-        // TODO ENCRYPT + ACK
-        WorkerQueue.SendMessage( POSTING_QUEUE, "getDeals".getBytes() );
-        WorkerQueue.SendMessage( POSTING_QUEUE, gson.toJson( getDealsRequest ).getBytes() );
-
-        GetDealsResponse response = new GetDealsResponse();
-
-        return ServiceModifiers.wrapHeaders( response, MediaType.APPLICATION_JSON );
+        return ServiceModifiers.wrapHeaders( PostingWorkProcessor.getDealsProcessor( getDealsRequest ),
+                MediaType.APPLICATION_JSON );
     }
 
     @OPTIONS
@@ -171,15 +147,8 @@ public class BuddahService
     {
         Logger.logRequest( req, "getDealsResult" );
 
-        // TODO verify token in http header
-
-        // TODO Redis retrieval
-
-        GetDealsResultResponse response = new GetDealsResultResponse();
-
-        // TODO set additional header for whether result is in cache (to
-        // differentiate no result with null result)
-        return ServiceModifiers.wrapHeaders( response, MediaType.APPLICATION_OCTET_STREAM );
+        return ServiceModifiers.wrapHeaders( PostingWorkProcessor.getDealsResultProcessor( getDealsResultRequest ),
+                MediaType.APPLICATION_JSON );
     }
 
     @OPTIONS
@@ -200,15 +169,8 @@ public class BuddahService
     {
         Logger.logRequest( req, "rating" );
 
-        // TODO verify token in http header
-
-        // TODO ENCRYPT + ACK
-        WorkerQueue.SendMessage( POSTING_QUEUE, "rating".getBytes() );
-        WorkerQueue.SendMessage( POSTING_QUEUE, gson.toJson( ratingRequest ).getBytes() );
-
-        RatingResponse response = new RatingResponse();
-
-        return ServiceModifiers.wrapHeaders( response, MediaType.APPLICATION_JSON );
+        return ServiceModifiers.wrapHeaders( PostingWorkProcessor.ratingProcessor( ratingRequest ),
+                MediaType.APPLICATION_JSON );
     }
 
     @OPTIONS
@@ -228,16 +190,8 @@ public class BuddahService
     {
         Logger.logRequest( req, "posting" );
 
-        // TODO verify token in http header
-
-        // TODO ENCRYPT + ACK
-        WorkerQueue.SendMessage( POSTING_QUEUE, "posting".getBytes() );
-        WorkerQueue.SendMessage( POSTING_QUEUE, gson.toJson( postingRequest ).getBytes() );
-
-        PostingResponse response = new PostingResponse();
-        response.setTimeLeft( postingRequest.getListing().getStartTime() - Calendar.getInstance().getTimeInMillis() );
-
-        return ServiceModifiers.wrapHeaders( response, MediaType.APPLICATION_JSON );
+        return ServiceModifiers.wrapHeaders( PostingWorkProcessor.postingProcessor( postingRequest ),
+                MediaType.APPLICATION_JSON );
     }
 
     @OPTIONS
@@ -258,7 +212,7 @@ public class BuddahService
     {
         Logger.logRequest( req, "viewUserRating" );
 
-        // TODO verify token in http header
+        // TODO verify token in request
 
         // TODO ENCRYPT + ACK
         WorkerQueue.SendMessage( POSTING_QUEUE, "viewUserRating".getBytes() );
@@ -283,11 +237,12 @@ public class BuddahService
     @POST
     @Path( "viewUserRatingResult" )
     @Produces( { MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON } )
-    public Response viewUserRatingResult( @Context HttpServletRequest req, ViewUserRatingResultRequest viewUserRatingResultRequest )
+    public Response viewUserRatingResult( @Context HttpServletRequest req,
+            ViewUserRatingResultRequest viewUserRatingResultRequest )
     {
         Logger.logRequest( req, "viewUserRatingResult" );
 
-        // TODO verify token in http header
+        // TODO verify token in request
 
         // TODO Redis retrieval
 
