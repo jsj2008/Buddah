@@ -6,6 +6,8 @@ public class Listing
     private String cellphone;
     private Position position;
     private String description;
+    
+    // TODO get rid of rating per listing?
     private double rating;
     private double price;
     private long startTime;
@@ -95,4 +97,16 @@ public class Listing
         this.price = price;
     }
 
+    public void fromDatabaseListing(model.database.Listing listing)
+    {
+        this.cellphone = listing.getCellphone();
+        this.description = listing.getDescription();
+        this.duration = listing.getDuration();
+        this.position = listing.getPosition().toServicesPosition();
+        this.price = listing.getPrice();
+        this.rating = listing.getRating();
+        this.startTime = listing.getStartTime();
+        this.username = listing.getUsername();
+    }
+    
 }
