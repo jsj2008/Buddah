@@ -10,7 +10,7 @@ function setCookie(c_name, c_value, expire) {
 
 function getCookie(c_name) {
 	var i, e, d, k, v;
-	var cookies = document.cookie.split(";");
+	var cookies = document.cookie.split("; ");
 
 	for (i = 0; i < cookies.length; i++) {
 		e = cookies[i];
