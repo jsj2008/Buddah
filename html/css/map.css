@@ -35,10 +35,7 @@ html, body {
 }
 
 .button_bar {
-	float: left;
-	bottom: 0px;
-	width: 25%;
-	height: 29px;
+	width: 20%;
 }
 
 /* px vs em ? */

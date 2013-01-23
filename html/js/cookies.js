@@ -22,5 +22,6 @@ function getCookie(c_name) {
 		if (c_name == k)
 			return unescape(v);
 	}
+	return null;
 }
 
