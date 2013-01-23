@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<script src="js/cookies.js"></script>
+	<script src="js/login.js"></script>
+	<script type="text/javascript">
+		window.onload = function() {
+			initForms();
+		}
+	</script>
+</head>
+<body>
+	<h3>Register</h3>
+		<p>Step 1</p>
+		<form id="initiateRegisterRequest">
+			Mobile Number: <input type="tel" name="cellphone"> </br>
+			<input type="submit" value="Get Activation Code">
+		</form>
+
+		<p>Step 2</p>
+		<form id="confirmRegisterRequest">
+			Activation Code: <input type="text" name="activationCode"></br>
+			Username: <input type="text" name="username" required pattern="^[a-zA-Z][a-zA-Z0-9]{5,12}$"> </br>
+			<input type="submit" value="Register">
+		</form>
+
+	</br>
+	<h3>-- OR --</h3>
+	</br>
+
+	<h3>Login</h3>
+		<form id="loginRequest">
+			Username: <input type="text" name="username" required pattern="^[a-zA-Z][a-zA-Z0-9]{5,12}$">
+			<input type="submit" value="Login">
+		</form>
+	
+</body>
+</html>
