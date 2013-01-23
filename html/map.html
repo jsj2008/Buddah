@@ -2,18 +2,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!--
-<link rel="stylesheet" type="text/css" href="style.css">
--->
-<link rel="stylesheet" type="text/css" href="css/reset.css">
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
 <link rel="stylesheet" type="text/css" href="css/map.css">
 
 	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-	<script src="./js/buddah.js"></script>
-	<script src="./js/squares.js"></script>
-	<script src="./js/maps.js"></script>
-	<script src="./js/cookies.js"></script>
+	<script src="js/login.js"></script>
+	<script src="js/buddah.js"></script>
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+	<script src="js/squares.js"></script>
+	<script src="js/maps.js"></script>
+	<script src="js/cookies.js"></script>
     <script type="text/javascript"
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9hEq3umI88HINmlq5l-CIxJWy7wD-XcA&sensor=true">
     </script>
@@ -34,6 +34,16 @@
 </head>
 
 <body onresize='windowResize("content")'>
+	<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+			<h3> this is a modal header</h3>
+		</div>
+		<div class="modal-body">
+			<p>please login</p>
+		</div>
+	</div>
+
 	<div id="content">
 		<div id="content_sq1" style="display: block;">
 			<div id="map_canvas" style="width: 100%; height: 100%;"></div>
@@ -68,18 +78,12 @@
 		<div id="content_sq3">
 			<div>theyre so fluffy</div>
 			<canvas id="c3"></canvas>
-			<form>
-				description: <input type="text" name="n1"> <br>
-				price: <input type="number" name="n2"> <br>
-				location: <input type="text" name="n2"> <br>
-				start time: <input type="date" name="n2">
-						<input type="time" name="n2"> <br>
-				length of posting: <input type="text" name="n2"> <br>
-				<input type="submit">
-			</form>
-
 			<form id="initiateRegisterRequest">
-				numba: <input id="testid" type="text" name="cellphone"><br>
+				description: <input type="text" name="description"> <br>
+				price: <input type="number" name="price"> <br>
+				location: <input type="text" name="location"> <br>
+				start time: <input type="date" name="start">
+				length of posting: <input type="text" name="length"> <br>
 				<input type="submit">
 			</form>
 		</div>
@@ -89,11 +93,20 @@
 		</div>
 	</div>
 
-	<div id="bottom_menu_bar">
-		<button id="sq1" class="button_bar" onclick="showContent(this)">map</button>
-		<button id="sq2" class="button_bar" onclick="showContent(this)">deals</button>
-		<button id="sq3" class="button_bar" onclick="showContent(this)">post</button>
-		<button id="sq4" class="button_bar" onclick="showContent(this)">my posts</button>
+	<div class="btn-group" id="bottom_menu_bar">
+		<button id="sq1" class="btn button_bar" onclick="showContent(this)">map</button>
+		<button id="sq2" class="btn button_bar" onclick="showContent(this)">deals</button>
+		<button id="sq3" class="btn button_bar" onclick="showContent(this)">post</button>
+		<div class="btn-group dropup button_bar">
+			<button id="sq4" class="btn" onclick="showContent(this)">my posts</button>
+			<button class="btn dropdown-toggle" data-toggle="dropdown">
+				<span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu">
+				<a href="#myModal" role="button" data-toggle="modal"> login/logout</a>
+			</ul>
+
+		</div>
 	</div>
 </body>
 </html>
