@@ -6,6 +6,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class ConfirmRegisterResponse
 {
     private String token;
+    private boolean usernameTaken;
 
     public ConfirmRegisterResponse()
     {
@@ -21,4 +22,13 @@ public class ConfirmRegisterResponse
         this.token = token;
     }
 
+    public boolean isUsernameTaken()
+    {
+        return usernameTaken;
+    }
+
+    public void setUsernameTaken( boolean usernameTaken )
+    {
+        this.usernameTaken = usernameTaken;
+    }
 }

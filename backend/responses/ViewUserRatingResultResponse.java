@@ -10,7 +10,7 @@ import model.services.Feedback;
 public class ViewUserRatingResultResponse
 {
     boolean ready;
-    ArrayList<Feedback> feedbackList;
+    Feedback[] feedbackList;
 
     public ViewUserRatingResultResponse()
     {
@@ -26,12 +26,12 @@ public class ViewUserRatingResultResponse
         this.ready = ready;
     }
 
-    public ArrayList<Feedback> getFeedbackList()
+    public Feedback[] getFeedbackList()
     {
         return feedbackList;
     }
 
-    public void setFeedbackList( ArrayList<Feedback> feedbackList )
+    public void setFeedbackList( Feedback[] feedbackList )
     {
         this.feedbackList = feedbackList;
     }
