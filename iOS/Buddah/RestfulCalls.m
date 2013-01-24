@@ -29,44 +29,42 @@ BOOL confirmResult = NO;
  *
  */
 + (BOOL) loginRequest:(Login*)login{
-    __block int wait = -1;
+    dispatch_semaphore_t sema = dispatch_semaphore_create(0);
     //send our login token to the server
-        //setup request mapping
-        RKObjectMapping *loginMapping = [RKObjectMapping requestMapping];
-        [loginMapping addAttributeMappingsFromDictionary:@{@"userId" : @"userId"}];
-        [[RKObjectManager sharedManager] addRequestDescriptor:[RKRequestDescriptor requestDescriptorWithMapping:loginMapping objectClass:[Login class] rootKeyPath:nil]];
-        //setup response mapping
-        RKObjectMapping *loginResMap = [RKObjectMapping mappingForClass:[Login class]];
-        [loginResMap addAttributeMappingsFromDictionary:@{@"result" : @"result"}];
-        RKResponseDescriptor *loginRespDesc = [RKResponseDescriptor responseDescriptorWithMapping:loginResMap pathPattern:nil keyPath:nil statusCodes:[NSIndexSet indexSetWithIndex:200]];
-        [[RKObjectManager sharedManager] addResponseDescriptor:loginRespDesc];
-        //setup routing
-        RKRouter *router = [[RKObjectManager sharedManager] router];
-        RKRoute *loginRoute = [RKRoute routeWithClass:[Login class] pathPattern:@"/services/login" method:RKRequestMethodPOST];
-        [router.routeSet addRoute:loginRoute];
-        //make the put request
-
-        [[RKObjectManager sharedManager] postObject:login path:nil parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-            NSLog(@"login request sent succesfully");
-            id first = [mappingResult firstObject];
-            if([first isMemberOfClass:[Login class]]){
-                if(((Login*)first).result){
-                    NSLog(@"login request returned success");
-                    loginResult = YES;
-                }
-                else{
-                    NSLog(@"login request returned failure");
-                }
-            }
-            wait = 1;
-        } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-            NSLog(@"login request failed to send");
-            wait = 1;
-        }];
+    //setup request mapping
+    RKObjectMapping *loginMapping = [RKObjectMapping requestMapping];
+    [loginMapping addAttributeMappingsFromDictionary:@{@"userId" : @"userId"}];
+    [[RKObjectManager sharedManager] addRequestDescriptor:[RKRequestDescriptor requestDescriptorWithMapping:loginMapping objectClass:[Login class] rootKeyPath:nil]];
+    //setup response mapping
+    RKObjectMapping *loginResMap = [RKObjectMapping mappingForClass:[Login class]];
+    [loginResMap addAttributeMappingsFromDictionary:@{@"result" : @"result"}];
+    RKResponseDescriptor *loginRespDesc = [RKResponseDescriptor responseDescriptorWithMapping:loginResMap pathPattern:nil keyPath:nil statusCodes:[NSIndexSet indexSetWithIndex:200]];
+    [[RKObjectManager sharedManager] addResponseDescriptor:loginRespDesc];
+    //setup routing
+    RKRouter *router = [[RKObjectManager sharedManager] router];
+    RKRoute *loginRoute = [RKRoute routeWithClass:[Login class] pathPattern:@"/services/login" method:RKRequestMethodPOST];
+    [router.routeSet addRoute:loginRoute];
+    //make the put request
     
-    while(wait ==-1){
-        [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.01]];
-    }
+    [[RKObjectManager sharedManager] postObject:login path:nil parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        NSLog(@"login request sent succesfully");
+        id first = [mappingResult firstObject];
+        if([first isMemberOfClass:[Login class]]){
+            if(((Login*)first).result){
+                NSLog(@"login request returned success");
+                loginResult = YES;
+            }
+            else{
+                NSLog(@"login request returned failure");
+            }
+        }
+        dispatch_semaphore_signal(sema);
+    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        NSLog(@"login request failed to send");
+        dispatch_semaphore_signal(sema);
+    }];
+    
+    dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
     return loginResult;
 }
 
@@ -110,7 +108,7 @@ BOOL confirmResult = NO;
         NSLog(@"It failed %@", error);
     }
      ];
-
+    
 }
 
 /**
@@ -122,7 +120,7 @@ BOOL confirmResult = NO;
 + (BOOL) confirmRequest:(ConfirmRegister *)confirm{
     // Send the ConfirmRegister message
     // Add request mapping
-    __block int wait = -1;
+    dispatch_semaphore_t sema = dispatch_semaphore_create(0);
     RKObjectMapping *confirmMapping = [RKObjectMapping requestMapping];
     [confirmMapping addAttributeMappingsFromDictionary:@{@"activationCode" : @"activationCode",
      @"username" : @"username"}];
@@ -159,15 +157,13 @@ BOOL confirmResult = NO;
         [defaults setBool:NO forKey:@"displayActivationPrompt"];
         [defaults synchronize];
         NSLog(@"oh god this dick is huge");
-        wait = 1;
+        dispatch_semaphore_signal(sema);
     }failure:^(RKObjectRequestOperation *operation, NSError *error) {
         NSLog(@"It failed %@", error);
-        wait = 1;
+        dispatch_semaphore_signal(sema);
     }
      ];
-    while(wait ==-1){
-        [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.01]];
-    }
+    dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
     NSLog(@"Outside of post");
     return confirmResult;
 }
@@ -229,8 +225,8 @@ BOOL confirmResult = NO;
 }
 
 + (GetDeals *) getDealsRequest:(GetDeals *)request{
-    __block int wait = -1;
-    __block GetDeals *results;
+    dispatch_semaphore_t sema = dispatch_semaphore_create(0);
+    __block GetDeals *guidResults, *results;
     
     RKObjectMapping *posMapping = [RKObjectMapping mappingForClass:[Position class]];
     [posMapping addAttributeMappingsFromDictionary:@{@"longitude" : @"longitude", @"latitude" : @"latitude"}];
@@ -249,17 +245,14 @@ BOOL confirmResult = NO;
     RKObjectMapping *dealsMapping = [RKObjectMapping mappingForClass:[GetDeals class]];
     [dealsMapping addAttributeMappingsFromDictionary:@{@"userId" : @"userId", @"xOffset" : @"xOffset", @"yOffset" : @"yOffset"}];
     [dealsMapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"position" toKeyPath:@"position" withMapping:posMapping]];
-
+    
     
     RKObjectMapping *dealsInverse = [dealsMapping inverseMapping];
     [[RKObjectManager sharedManager] addRequestDescriptor:[RKRequestDescriptor requestDescriptorWithMapping:dealsInverse objectClass:[GetDeals class] rootKeyPath:nil]];
-  //  RKRequestDescriptor *reqDesc = [RKRequestDescriptor requestDescriptorWithMapping:dealsInverse objectClass:[GetDeals class] rootKeyPath:nil];
-    
-   // NSDictionary *params = [RKObjectParameterization parametersWithObject:request requestDescriptor:reqDesc error:nil];
     
     
     RKObjectMapping *dealsRespMap = [RKObjectMapping mappingForClass:[GetDeals class]];
-    [dealsRespMap addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"listings" toKeyPath:@"listings" withMapping:listingMapping]];
+    [dealsRespMap addAttributeMappingsFromArray:@[@"guid"]];
     RKResponseDescriptor *response = [RKResponseDescriptor responseDescriptorWithMapping:dealsRespMap pathPattern:nil keyPath:nil statusCodes:[NSIndexSet indexSetWithIndex:200]];
     [[RKObjectManager sharedManager] addResponseDescriptor:response];
     
@@ -267,39 +260,66 @@ BOOL confirmResult = NO;
     RKRoute *postRoute = [RKRoute routeWithClass:[GetDeals class] pathPattern:@"/services/getDeals" method:RKRequestMethodPOST];
     [router.routeSet addRoute:postRoute];
     
- 
+    
     [[RKObjectManager sharedManager] postObject:request path:nil parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         NSLog(@"successfully got deals");
         id first = [mappingResult firstObject];
         if([first isMemberOfClass:[GetDeals class]]){
             NSLog(@"we have a GetDeals");
-            results = first;
+            guidResults = first;
         }
-        wait = 1;
+        dispatch_semaphore_signal(sema);
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
         NSLog(@"failed to get deals");
         results = nil;
-        wait = 1;
+        dispatch_semaphore_signal(sema);
     }];
+    dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
     
-  /*  NSMutableURLRequest *urlRequest = [[RKObjectManager sharedManager] multipartFormRequestWithObject:request method:RKRequestMethodGET path:nil parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        [formData appendPartWithHeaders:[[RKObjectManager sharedManager] defaultHeaders] body:[[params debugDescription] dataUsingEncoding:[NSString defaultCStringEncoding]]];
-    }];
-    
-   RKObjectRequestOperation *op =  [[RKObjectManager sharedManager] objectRequestOperationWithRequest:urlRequest success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-        NSLog(@"successfully got deals");
-        results = [mappingResult array];
-        wait = 1;
-    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-        NSLog(@"failed to get deals");
-        results = nil;
-        wait = 1;
-    }];
-
-    [[RKObjectManager sharedManager] enqueueObjectRequestOperation:op];*/
-    
-    while(wait ==-1){
-        [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.01]];
+    if (results){
+        NSLog(@"guid = %@", guidResults.guid);
+        dispatch_semaphore_t guidSema = dispatch_semaphore_create(0);
+        RKObjectMapping *guidMapping = [RKObjectMapping requestMapping];
+        [guidMapping addAttributeMappingsFromDictionary:@{@"guid" : @"guid"}];
+        [[RKObjectManager sharedManager] addRequestDescriptor:
+         [RKRequestDescriptor requestDescriptorWithMapping:guidMapping
+                                               objectClass:[GetDeals class]
+                                               rootKeyPath:nil]];
+        
+        //add response mapping
+        RKObjectMapping *dealsRespMap = [RKObjectMapping mappingForClass:[GetDeals class]];
+        [dealsRespMap addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"listings" toKeyPath:@"listings" withMapping:listingMapping]];
+        RKResponseDescriptor *response = [RKResponseDescriptor responseDescriptorWithMapping:dealsRespMap pathPattern:nil keyPath:nil statusCodes:[NSIndexSet indexSetWithIndex:200]];
+        [[RKObjectManager sharedManager] addResponseDescriptor:response];
+        
+        RKRouter *guidRouter = [[RKObjectManager sharedManager] router];
+        RKRoute *postRoute = [RKRoute routeWithClass:[GetDeals class] pathPattern:@"/services/getDealsResult" method:RKRequestMethodPOST];
+        [guidRouter.routeSet addRoute:postRoute];
+        
+        __block int reqCount = 0;
+        __block BOOL success = FALSE;
+        while (!success && reqCount < 20){
+            [[RKObjectManager sharedManager] postObject:guidResults path:nil parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+                NSLog(@"successfully got deals");
+                id first = [mappingResult firstObject];
+                if([first isMemberOfClass:[GetDeals class]]){
+                    NSLog(@"we have a GetDeals");
+                    results = first;
+                    /****
+                     * will need to calculate success
+                     */
+                    success = TRUE;
+                    NSLog(@"reqCount = %d", reqCount);
+                }
+                dispatch_semaphore_signal(guidSema);
+            } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+                NSLog(@"failed to get deals");
+                results = nil;
+                dispatch_semaphore_signal(guidSema);
+            }];
+            dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+        }
+        reqCount++;
     }
     return results;
 }

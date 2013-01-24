@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "dealData.h"
+#import "Response_Request.h"
 
 @interface Bud_DealViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *ratingLabel;
 @property (weak, nonatomic) IBOutlet UILabel *endLabel;
-@property (weak, nonatomic) dealData *deal;
+@property (weak, nonatomic) Listing *deal;
 @end

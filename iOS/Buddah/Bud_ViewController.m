@@ -224,6 +224,29 @@
         self.userHasLoggedIn = [RestfulCalls loginRequest:login];
     }
     */
+    
+    int i = 0;
+    for( UIViewController *view in self.tabBarController.viewControllers){
+        UIViewController *visibleView;
+        if([view isKindOfClass:[UINavigationController class]]){
+            visibleView = [(UINavigationController *)view visibleViewController];
+                ((UINavigationController *)view).navigationBar.tintColor = [UIColor colorWithRed:0.2 green:1.0 blue:0.2 alpha:1.0];
+        }
+        if([visibleView isKindOfClass:[Bud_TableViewController class]]){
+            NSLog(@"setting up delegate");
+            if([((UITabBarItem*)[self.tabBarController.tabBar.items objectAtIndex:i]).title isEqualToString:@"Nearby"]){
+                NSLog(@"Nearby");
+                self.nearbyDelegate = [[Bud_NearbyTableDelegate alloc] init];
+                ((Bud_TableViewController*)visibleView).cellDelegate = self.nearbyDelegate;
+            }
+            if([((UITabBarItem*)[self.tabBarController.tabBar.items objectAtIndex:i]).title     isEqualToString:@"Recents"]){
+                NSLog(@"Recents");
+                self.recentDelegate = [[Bud_RecentTableDelegate alloc] init];
+                ((Bud_TableViewController*)visibleView).cellDelegate = self.recentDelegate;
+            }
+        }
+        i++;
+    }
 
     self.userHasLoggedIn = YES;
 

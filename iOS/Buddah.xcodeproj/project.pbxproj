@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		C105D6E41671B71900E34C18 /* Defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = C105D6E31671B71900E34C18 /* Defaults.plist */; };
+		C10F7B8416AFAB3E00F3862C /* Bud_TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C10F7B8316AFAB3E00F3862C /* Bud_TableViewController.m */; };
+		C10F7B8716AFB24E00F3862C /* Bud_NearbyTableDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C10F7B8616AFB24E00F3862C /* Bud_NearbyTableDelegate.m */; };
+		C10F7B8A16B0D9EB00F3862C /* Bud_RecentTableDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C10F7B8916B0D9EA00F3862C /* Bud_RecentTableDelegate.m */; };
+		C10F7B8D16B0EE6E00F3862C /* Bud_ReviewTableDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C10F7B8C16B0EE6E00F3862C /* Bud_ReviewTableDelegate.m */; };
+		C10F7B9716B1100500F3862C /* Bud_ReviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C10F7B9616B1100400F3862C /* Bud_ReviewViewController.m */; };
 		C15D7A45165B3DA100C70916 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C15D7A44165B3DA100C70916 /* UIKit.framework */; };
 		C15D7A47165B3DA100C70916 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C15D7A46165B3DA100C70916 /* Foundation.framework */; };
 		C15D7A49165B3DA100C70916 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C15D7A48165B3DA100C70916 /* CoreGraphics.framework */; };
@@ -89,6 +94,16 @@
 
 /* Begin PBXFileReference section */
 		C105D6E31671B71900E34C18 /* Defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Defaults.plist; sourceTree = "<group>"; };
+		C10F7B8216AFAB3E00F3862C /* Bud_TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bud_TableViewController.h; sourceTree = "<group>"; };
+		C10F7B8316AFAB3E00F3862C /* Bud_TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bud_TableViewController.m; sourceTree = "<group>"; };
+		C10F7B8516AFB24E00F3862C /* Bud_NearbyTableDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bud_NearbyTableDelegate.h; sourceTree = "<group>"; };
+		C10F7B8616AFB24E00F3862C /* Bud_NearbyTableDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bud_NearbyTableDelegate.m; sourceTree = "<group>"; };
+		C10F7B8816B0D9EA00F3862C /* Bud_RecentTableDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bud_RecentTableDelegate.h; sourceTree = "<group>"; };
+		C10F7B8916B0D9EA00F3862C /* Bud_RecentTableDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bud_RecentTableDelegate.m; sourceTree = "<group>"; };
+		C10F7B8B16B0EE6E00F3862C /* Bud_ReviewTableDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bud_ReviewTableDelegate.h; sourceTree = "<group>"; };
+		C10F7B8C16B0EE6E00F3862C /* Bud_ReviewTableDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bud_ReviewTableDelegate.m; sourceTree = "<group>"; };
+		C10F7B9516B1100300F3862C /* Bud_ReviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bud_ReviewViewController.h; sourceTree = "<group>"; };
+		C10F7B9616B1100400F3862C /* Bud_ReviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bud_ReviewViewController.m; sourceTree = "<group>"; };
 		C15D7A40165B3DA100C70916 /* Buddah.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Buddah.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C15D7A44165B3DA100C70916 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C15D7A46165B3DA100C70916 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -180,6 +195,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C10F7B8E16B0EE8000F3862C /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				C10F7B8816B0D9EA00F3862C /* Bud_RecentTableDelegate.h */,
+				C10F7B8916B0D9EA00F3862C /* Bud_RecentTableDelegate.m */,
+				C10F7B8516AFB24E00F3862C /* Bud_NearbyTableDelegate.h */,
+				C10F7B8616AFB24E00F3862C /* Bud_NearbyTableDelegate.m */,
+				C10F7B8B16B0EE6E00F3862C /* Bud_ReviewTableDelegate.h */,
+				C10F7B8C16B0EE6E00F3862C /* Bud_ReviewTableDelegate.m */,
+			);
+			name = Delegates;
+			sourceTree = "<group>";
+		};
 		C15D7A35165B3DA000C70916 = {
 			isa = PBXGroup;
 			children = (
@@ -226,19 +254,24 @@
 				C15D7A54165B3DA100C70916 /* Bud_AppDelegate.m */,
 				C1ED9A09167C0C6D006DA0F2 /* RestfulCalls.h */,
 				C1ED9A0A167C0C6D006DA0F2 /* RestfulCalls.m */,
-				C15D7A5C165B3DA100C70916 /* MainStoryboard.storyboard */,
 				C1ED9A14167E6612006DA0F2 /* dealData.h */,
 				C1ED9A15167E6612006DA0F2 /* dealData.m */,
+				C15D7A5C165B3DA100C70916 /* MainStoryboard.storyboard */,
+				C10F7B9516B1100300F3862C /* Bud_ReviewViewController.h */,
+				C10F7B9616B1100400F3862C /* Bud_ReviewViewController.m */,
 				C18A172B166C660500427DEC /* Bud_DealViewController.h */,
 				C18A172C166C660500427DEC /* Bud_DealViewController.m */,
 				C18A17041665D78E00427DEC /* Bud_PostViewController.h */,
 				C18A17051665D78E00427DEC /* Bud_PostViewController.m */,
 				C18A1722166C06B600427DEC /* Bud_MapViewController.h */,
 				C18A1723166C06B600427DEC /* Bud_MapViewController.m */,
+				C10F7B8216AFAB3E00F3862C /* Bud_TableViewController.h */,
+				C10F7B8316AFAB3E00F3862C /* Bud_TableViewController.m */,
 				C15D7A5F165B3DA100C70916 /* Bud_ViewController.h */,
 				C15D7A60165B3DA100C70916 /* Bud_ViewController.m */,
 				C1ED9A17167E6708006DA0F2 /* Bud_PreviewController.h */,
 				C1ED9A18167E6708006DA0F2 /* Bud_PreviewController.m */,
+				C10F7B8E16B0EE8000F3862C /* Delegates */,
 				C1871EF71673BD4F000A9773 /* RESTful */,
 				C15D7A4B165B3DA100C70916 /* Supporting Files */,
 			);
@@ -438,6 +471,11 @@
 				C1ED9A0B167C0C6D006DA0F2 /* RestfulCalls.m in Sources */,
 				C1ED9A16167E6612006DA0F2 /* dealData.m in Sources */,
 				C1ED9A19167E6708006DA0F2 /* Bud_PreviewController.m in Sources */,
+				C10F7B8416AFAB3E00F3862C /* Bud_TableViewController.m in Sources */,
+				C10F7B8716AFB24E00F3862C /* Bud_NearbyTableDelegate.m in Sources */,
+				C10F7B8A16B0D9EB00F3862C /* Bud_RecentTableDelegate.m in Sources */,
+				C10F7B8D16B0EE6E00F3862C /* Bud_ReviewTableDelegate.m in Sources */,
+				C10F7B9716B1100500F3862C /* Bud_ReviewViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

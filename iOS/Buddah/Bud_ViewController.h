@@ -11,7 +11,11 @@
 #import <RestKit/RestKit.h>
 #import "Response_Request.h"
 #import "RestfulCalls.h"
+#import "Bud_TableViewController.h"
+#import "Bud_NearbyTableDelegate.h"
+#import "Bud_RecentTableDelegate.h"
 
 @interface Bud_ViewController : UIViewController
-
+@property (nonatomic, strong) Bud_NearbyTableDelegate* nearbyDelegate;
+@property (nonatomic, strong) Bud_RecentTableDelegate* recentDelegate;
 @end

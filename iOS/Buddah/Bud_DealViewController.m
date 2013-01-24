@@ -7,9 +7,10 @@
 //
 
 #import "Bud_DealViewController.h"
+#import "Bud_ReviewTableDelegate.h"
 
 @interface Bud_DealViewController ()
-
+@property (nonatomic, strong) Bud_ReviewTableDelegate *reviewDelegate;
 @end
 
 @implementation Bud_DealViewController
@@ -27,16 +28,27 @@
     }
     return self;
 }
+- (IBAction)showReviews {
+    [self performSegueWithIdentifier:@"showReviews" sender:self];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:@"showReviews"]){
+        ((Bud_TableViewController *)segue.destinationViewController).cellDelegate = self.reviewDelegate;
+    }
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     // Fill the labels
-    self.priceLabel.text = [self.priceLabel.text stringByAppendingString:self.deal.priceText];
-    self.descriptionLabel.text = self.deal.descriptionText;
-    self.ratingLabel.text = [self.ratingLabel.text stringByAppendingString:[[[NSNumber alloc] initWithInt:self.deal.rating] description]];
-    self.endLabel.text = [self.endLabel.text stringByAppendingString:[self.deal.endTime description]];
+    self.priceLabel.text = [self.priceLabel.text stringByAppendingString:self.deal.price.stringValue];
+    self.descriptionLabel.text = self.deal.description;
+    self.ratingLabel.text = [self.ratingLabel.text stringByAppendingString:self.deal.rating.stringValue];
+    self.endLabel.text = [self.endLabel.text stringByAppendingString:self.deal.duration.stringValue];
+    
+    self.reviewDelegate = [[Bud_ReviewTableDelegate alloc] init];
 }
 
 - (void)didReceiveMemoryWarning

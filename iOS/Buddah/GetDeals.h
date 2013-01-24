@@ -16,7 +16,8 @@
 @property (nonatomic, strong) NSNumber *yOffset;
 @property (nonatomic, strong) NSNumber *xOffset;
 
-//response
+//responses
+@property (nonatomic, strong) NSString *guid;
 @property (nonatomic, strong) NSArray *listings;
 
 @end

@@ -10,5 +10,5 @@
 
 @interface Feedback : NSObject
 @property (nonatomic, strong) NSString *commentary;
-@property (nonatomic) float rating;
+@property (nonatomic, strong) NSNumber *rating;
 @end
