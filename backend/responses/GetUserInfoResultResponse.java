@@ -2,57 +2,40 @@ package services.responses;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+import model.services.AccountApp;
+
 @XmlRootElement
 public class GetUserInfoResultResponse
 {    
-    String usernameDealer;
-    int numPosts;
-    int numRatings;
-    double avgRating;
+    
+    boolean ready;
+    AccountApp accountApp;
 
     public GetUserInfoResultResponse()
     {
         // TODO Auto-generated constructor stub
     }
 
-    public String getUsernameDealer()
+
+    public boolean isReady()
     {
-        return usernameDealer;
+        return ready;
     }
 
-    public void setUsernameDealer( String usernameDealer )
+    public void setReady( boolean ready )
     {
-        this.usernameDealer = usernameDealer;
+        this.ready = ready;
+    }
+    
+    public AccountApp getAccountApp()
+    {
+        return accountApp;
     }
 
-    public int getNumPosts()
+    public void setAccountApp( AccountApp accountApp )
     {
-        return numPosts;
+        this.accountApp = accountApp;
     }
 
-    public void setNumPosts( int numPosts )
-    {
-        this.numPosts = numPosts;
-    }
-
-    public int getNumRatings()
-    {
-        return numRatings;
-    }
-
-    public void setNumRatings( int numRatings )
-    {
-        this.numRatings = numRatings;
-    }
-
-    public double getAvgRating()
-    {
-        return avgRating;
-    }
-
-    public void setAvgRating( double avgRating )
-    {
-        this.avgRating = avgRating;
-    }
 
 }

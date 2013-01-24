@@ -5,6 +5,8 @@ public class Feedback
     private double rating;
     private long timeOfRating;
     private String commentary;
+    private String title;
+    private String usernameDealer;
     
     public Feedback()
     {
@@ -45,5 +47,30 @@ public class Feedback
         this.setCommentary( feedback.getCommentary() );
         this.setRating( feedback.getRating() );
         this.setTimeOfRating( feedback.getTimeOfRating() );
+        this.setTitle( feedback.getTitle() );
+        this.setUsernameDealer( feedback.getUsernameDealer() );
+    }
+
+    public String getTitle()
+    {
+        return title;
+    }
+
+    public void setTitle( String title )
+    {
+        this.title = title;
+    }
+
+    public String getUsernameDealer()
+    {
+        return usernameDealer;
+    }
+
+    public void setUsernameDealer( String usernameDealer )
+    {
+        this.usernameDealer = usernameDealer;
     }    
+    
+    
 }
+
