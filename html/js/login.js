@@ -13,7 +13,7 @@ function get_userToken() {
 	return getCookie("userToken");
 }
 function get_username() {
-	return username;
+	return getCookie("username");
 }
 
 var baseUrl = "http://buddah.herokuapp.com/services";
@@ -24,7 +24,7 @@ function initForms() {
 	loginInit();
 }
 
-function toJSON(arr) {
+function toRawJSON(arr) {
 	var o = {};
 	$.each(arr, function() {
 		if (o[this.name] !== undefined) {
@@ -36,7 +36,10 @@ function toJSON(arr) {
 			o[this.name] = this.value || '';
 		}
 	});
-	return JSON.stringify(o);
+	return o;
+}
+function toJSON(arr) {
+	return JSON.stringify(toRawJSON(arr));
 }
 
 function initiateRegisterInit() {
@@ -69,11 +72,15 @@ function confirmRegisterInit() {
 			url: baseUrl + "/confirmRegister",
 			data: toJSON($("#confirmRegisterRequest").serializeArray()),
 			success: function (data) {
-				setCookie("userToken", data.token);
 				console.log("success" + data);
+				if (data.usernameTaken == false ) {
+					setCookie("userToken", data.token);
+				}
+				else
+					console.log("username taken!!");
 			},
 			error: function() {
-				console.log("fuckburgers");
+				console.log("username already exists?");
 			},
 			dataType: 'json',
 			contentType: 'application/json; charset=utf-8'
@@ -92,6 +99,7 @@ function loginData() {
 }
 function loginInit() {
 	$('#loginRequest').submit( function() {
+		setCookie("username",$("#user").val());
 		if (get_userToken() == null) {
 			console.log("no userToken");
 		}

@@ -1,14 +1,20 @@
-/* done:
- * 
- * not done:
+/* sort of done:
  * getDeals
  * getDealsResult
- * rating
  * posting
+ * 
+ * not done:
+ * getUserInfo
+ * getUserInfoResult
+ * rating
  * viewUserRating
  * viewUserRatingResult
  */
 
+function initBuddah() {
+	getDealsInit();
+	postingInit();
+}
 
 function getDealsInit() {
 	$('#sq2').click( function() {
@@ -17,16 +23,17 @@ function getDealsInit() {
 			url: baseUrl + "/getDeals",
 			data: JSON.stringify({userToken: get_userToken(),
 									username: get_username(),
-									xOffset: "x",
-									yOffset: "y",
+									xOffset: 5.0,
+									yOffset: 5.0,
 									position: {latitude: 47,
 												longitude: -122}
 							}),
 			success: function (data) {
-				console.log("guid is " + data);
+				console.log("guid is " + data.guid);
+				getDealsResult(data.guid, 0);
 			},
 			error: function() {
-				console.log("fuckburgers");
+				console.log("getdeals error");
 			},
 			dataType: 'json',
 			contentType: 'application/json; charset=utf-8'
@@ -35,23 +42,32 @@ function getDealsInit() {
 	});
 }
 
-function getDealsResultInit() {
-	$('#getDealsResultRequest').submit( function() {
+function getDealsResult(guid, count) {
 		$.ajax({
 			type: "POST",
 			url: baseUrl + "/getDealsResult",
-			data: JSON.stringify($("#getDealsResultRequest").serialize()),
+			data: JSON.stringify({userToken: get_userToken(),
+									username: get_username(),
+									guid: guid
+							}),
 			success: function (data) {
 				console.log("success" + data);
+				if (data.ready == true) {
+					console.log("list is here!");
+					console.log(data.listings);
+				} else {
+					if (count < 12)
+						setTimeout(function() {getDealsResult(guid, count+1);}, 800);
+					else
+						console.log("fuck why shit take so long?");
+				}
 			},
 			error: function() {
-				console.log("fuckburgers");
+				console.log("getdealsresults error");
 			},
 			dataType: 'json',
 			contentType: 'application/json; charset=utf-8'
 		});
-		return false;
-	});
 }
 
 function ratingInit() {
@@ -73,17 +89,28 @@ function ratingInit() {
 	});
 }
 
+function postingData() {
+	var o = toRawJSON($("#postingRequest").serializeArray());
+	var p = {"latitude": 46, "longitude":-122};
+	var u = {"userToken": get_userToken(),"username": get_username()};
+
+	o["position"] = p;
+	u["listing"] = o;
+
+	return JSON.stringify(u);
+}
+
 function postingInit() {
 	$('#postingRequest').submit( function() {
 		$.ajax({
 			type: "PUT",
 			url: baseUrl + "/posting",
-			data: JSON.stringify($("#postingRequest").serialize()),
+			data: postingData(),
 			success: function (data) {
-				console.log("success" + data);
+				console.log("posting success");
 			},
 			error: function() {
-				console.log("fuckburgers");
+				console.log("posting error");
 			},
 			dataType: 'json',
 			contentType: 'application/json; charset=utf-8'

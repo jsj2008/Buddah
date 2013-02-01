@@ -29,6 +29,7 @@
 			activeContent = document.getElementById("content_sq1");
 			windowResize("content");
 			initForms();
+			initBuddah();
 		}
 	</script>
 </head>
@@ -78,12 +79,13 @@
 		<div id="content_sq3">
 			<div>theyre so fluffy</div>
 			<canvas id="c3"></canvas>
-			<form id="initiateRegisterRequest">
-				description: <input type="text" name="description"> <br>
+			<form id="postingRequest">
+				<input type="hidden" name="rating" value="5"> <br>
+				cell: <input type="tel" name="cellphone"> <br>
+				start time: <input type="number" name="startTime" value="1359701946618"><br>
+				duration: <input type="number" name="duration" value="1000000"><br>
+				description: <input type="text" name="description"><br>
 				price: <input type="number" name="price"> <br>
-				location: <input type="text" name="location"> <br>
-				start time: <input type="date" name="start">
-				length of posting: <input type="text" name="length"> <br>
 				<input type="submit">
 			</form>
 		</div>
