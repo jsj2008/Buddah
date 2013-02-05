@@ -6,6 +6,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class InitiateRegisterResponse
 {
     private String instructionMessage;
+    private boolean cellphoneTaken;
     
     public InitiateRegisterResponse()
     {
@@ -20,5 +21,15 @@ public class InitiateRegisterResponse
     {
         this.instructionMessage = instructionMessage;
     }
+
+    public boolean isCellphoneTaken()
+    {
+        return cellphoneTaken;
+    }
+
+    public void setCellphoneTaken( boolean cellphoneTaken )
+    {
+        this.cellphoneTaken = cellphoneTaken;
+    }   
     
 }

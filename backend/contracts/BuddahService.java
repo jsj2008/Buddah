@@ -1,6 +1,7 @@
 package services.contracts;
 
 import java.net.HttpURLConnection;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
@@ -12,6 +13,7 @@ import com.google.gson.Gson;
 import constants.LoggingConstants;
 import constants.QueueConstants;
 
+import logging.CorrelationLogData;
 import logging.Logger;
 
 import services.requests.*;
@@ -31,6 +33,8 @@ import utilities.services.ServiceModifiers;
 @Produces( { MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN } )
 public class BuddahService
 {
+    static final String HeaderXForwardedFor = "X-Forwarded-For";
+    
     //
     // Account Service Endpoints
     //
@@ -41,7 +45,9 @@ public class BuddahService
     @Produces( { MediaType.APPLICATION_OCTET_STREAM } )
     public Response initiateRegisterPreflight( @Context HttpServletRequest req )
     {
-        Logger.logRequest( req, "initiateRegisterPreflight", null, LoggingConstants.NORMAL );
+        CorrelationLogData correlationLogData = new CorrelationLogData(req.getHeader( HeaderXForwardedFor ), UUID.randomUUID().toString());
+
+        Logger.logRequest( req, "initiateRegisterPreflight", null, correlationLogData, LoggingConstants.NORMAL );
 
         return ServiceModifiers.wrapHeaders( null, MediaType.APPLICATION_OCTET_STREAM, HttpURLConnection.HTTP_OK );
     }
@@ -52,9 +58,11 @@ public class BuddahService
     @Produces( { MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON } )
     public Response initiateRegister( @Context HttpServletRequest req, InitiateRegisterRequest initiateRegisterRequest )
     {
-        Logger.logRequest( req, "initiateRegister", initiateRegisterRequest, LoggingConstants.VERBOSE );
+        CorrelationLogData correlationLogData = new CorrelationLogData(req.getHeader( HeaderXForwardedFor ), UUID.randomUUID().toString());
+        
+        Logger.logRequest( req, "initiateRegister", initiateRegisterRequest, correlationLogData, LoggingConstants.VERBOSE );
 
-        return AccountWorkProcessor.initiateRegisterProcessor( initiateRegisterRequest );
+        return AccountWorkProcessor.initiateRegisterProcessor( initiateRegisterRequest, correlationLogData);
     }
 
     @OPTIONS
@@ -63,7 +71,8 @@ public class BuddahService
     @Produces( { MediaType.APPLICATION_OCTET_STREAM } )
     public Response confirmRegisterPreflight( @Context HttpServletRequest req )
     {
-        Logger.logRequest( req, "confirmRegisterPreflight", null, LoggingConstants.NORMAL );
+        CorrelationLogData correlationLogData = new CorrelationLogData(req.getHeader( HeaderXForwardedFor ), UUID.randomUUID().toString());
+        Logger.logRequest( req, "confirmRegisterPreflight", null, correlationLogData, LoggingConstants.NORMAL );
 
         return ServiceModifiers.wrapHeaders( null, MediaType.APPLICATION_OCTET_STREAM, HttpURLConnection.HTTP_OK );
     }
@@ -74,9 +83,10 @@ public class BuddahService
     @Produces( { MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON } )
     public Response confirmRegister( @Context HttpServletRequest req, ConfirmRegisterRequest confirmRegisterRequest )
     {
-        Logger.logRequest( req, "confirmRegister", confirmRegisterRequest, LoggingConstants.VERBOSE );
+        CorrelationLogData correlationLogData = new CorrelationLogData(req.getHeader( HeaderXForwardedFor ), UUID.randomUUID().toString());
+        Logger.logRequest( req, "confirmRegister", confirmRegisterRequest, correlationLogData, LoggingConstants.VERBOSE );
 
-        return AccountWorkProcessor.confirmRegisterProcessor( confirmRegisterRequest );
+        return AccountWorkProcessor.confirmRegisterProcessor( confirmRegisterRequest, correlationLogData);
     }
 
     @OPTIONS
@@ -85,7 +95,8 @@ public class BuddahService
     @Produces( { MediaType.APPLICATION_OCTET_STREAM } )
     public Response loginPreflight( @Context HttpServletRequest req )
     {
-        Logger.logRequest( req, "loginPreflight", null, LoggingConstants.NORMAL );
+        CorrelationLogData correlationLogData = new CorrelationLogData(req.getHeader( HeaderXForwardedFor ), UUID.randomUUID().toString());
+        Logger.logRequest( req, "loginPreflight", null, correlationLogData, LoggingConstants.NORMAL );
 
         return ServiceModifiers.wrapHeaders( null, MediaType.APPLICATION_OCTET_STREAM, HttpURLConnection.HTTP_OK );
     }
@@ -96,9 +107,10 @@ public class BuddahService
     @Produces( { MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON } )
     public Response login( @Context HttpServletRequest req, LoginRequest loginRequest )
     {
-        Logger.logRequest( req, "login", loginRequest, LoggingConstants.VERBOSE );
+        CorrelationLogData correlationLogData = new CorrelationLogData(req.getHeader( HeaderXForwardedFor ), UUID.randomUUID().toString());
+        Logger.logRequest( req, "login", loginRequest, correlationLogData, LoggingConstants.VERBOSE );
 
-        return AccountWorkProcessor.loginProcessor( loginRequest );
+        return AccountWorkProcessor.loginProcessor( loginRequest, correlationLogData);
     }
 
     @OPTIONS
@@ -107,7 +119,8 @@ public class BuddahService
     @Produces( { MediaType.APPLICATION_OCTET_STREAM } )
     public Response getUserInfo( @Context HttpServletRequest req )
     {
-        Logger.logRequest( req, "getUserInfoPreflight", null, LoggingConstants.NORMAL );
+        CorrelationLogData correlationLogData = new CorrelationLogData(req.getHeader( HeaderXForwardedFor ), UUID.randomUUID().toString());
+        Logger.logRequest( req, "getUserInfoPreflight", null, correlationLogData, LoggingConstants.NORMAL );
 
         return ServiceModifiers.wrapHeaders( null, MediaType.APPLICATION_OCTET_STREAM, HttpURLConnection.HTTP_OK );
     }
@@ -118,9 +131,10 @@ public class BuddahService
     @Produces( { MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON } )
     public Response getUserInfo( @Context HttpServletRequest req, GetUserInfoRequest getUserInfoRequest )
     {
-        Logger.logRequest( req, "getUserInfo", getUserInfoRequest, LoggingConstants.VERBOSE );
+        CorrelationLogData correlationLogData = new CorrelationLogData(req.getHeader( HeaderXForwardedFor ), UUID.randomUUID().toString());
+        Logger.logRequest( req, "getUserInfo", getUserInfoRequest, correlationLogData, LoggingConstants.VERBOSE );
 
-        return AccountWorkProcessor.getUserInfoProcessor( getUserInfoRequest );
+        return AccountWorkProcessor.getUserInfoProcessor( getUserInfoRequest, correlationLogData);
     }    
     
     @OPTIONS
@@ -129,7 +143,8 @@ public class BuddahService
     @Produces( { MediaType.APPLICATION_OCTET_STREAM } )
     public Response getUserInfoResultPreflight( @Context HttpServletRequest req )
     {
-        Logger.logRequest( req, "getUserInfoResultPreflight", null, LoggingConstants.NORMAL );
+        CorrelationLogData correlationLogData = new CorrelationLogData(req.getHeader( HeaderXForwardedFor ), UUID.randomUUID().toString());
+        Logger.logRequest( req, "getUserInfoResultPreflight", null, correlationLogData, LoggingConstants.NORMAL );
 
         return ServiceModifiers.wrapHeaders( null, MediaType.APPLICATION_OCTET_STREAM, HttpURLConnection.HTTP_OK );
     }
@@ -140,9 +155,10 @@ public class BuddahService
     @Produces( { MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON } )
     public Response getUserInfoResult( @Context HttpServletRequest req, GetUserInfoResultRequest getUserInfoResultRequest )
     {
-        Logger.logRequest( req, "getUserInfoResult", getUserInfoResultRequest, LoggingConstants.VERBOSE );
+        CorrelationLogData correlationLogData = new CorrelationLogData(req.getHeader( HeaderXForwardedFor ), UUID.randomUUID().toString());
+        Logger.logRequest( req, "getUserInfoResult", getUserInfoResultRequest, correlationLogData, LoggingConstants.VERBOSE );
 
-        return AccountWorkProcessor.getUserInfoResultProcessor( getUserInfoResultRequest );
+        return AccountWorkProcessor.getUserInfoResultProcessor( getUserInfoResultRequest, correlationLogData);
     } 
 
     //
@@ -155,7 +171,8 @@ public class BuddahService
     @Produces( { MediaType.APPLICATION_OCTET_STREAM } )
     public Response getDealsPreflight( @Context HttpServletRequest req )
     {
-        Logger.logRequest( req, "getDealsPreflight", null, LoggingConstants.NORMAL );
+        CorrelationLogData correlationLogData = new CorrelationLogData(req.getHeader( HeaderXForwardedFor ), UUID.randomUUID().toString());
+        Logger.logRequest( req, "getDealsPreflight", null, correlationLogData, LoggingConstants.NORMAL );
 
         return ServiceModifiers.wrapHeaders( null, MediaType.APPLICATION_OCTET_STREAM, HttpURLConnection.HTTP_OK );
     }
@@ -166,9 +183,10 @@ public class BuddahService
     @Produces( { MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON } )
     public Response getDeals( @Context HttpServletRequest req, GetDealsRequest getDealsRequest )
     {
-        Logger.logRequest( req, "getDeals", getDealsRequest, LoggingConstants.VERBOSE );
+        CorrelationLogData correlationLogData = new CorrelationLogData(req.getHeader( HeaderXForwardedFor ), UUID.randomUUID().toString());
+        Logger.logRequest( req, "getDeals", getDealsRequest, correlationLogData, LoggingConstants.VERBOSE );
 
-        return PostingWorkProcessor.getDealsProcessor( getDealsRequest );
+        return PostingWorkProcessor.getDealsProcessor( getDealsRequest, correlationLogData);
     }
 
     @OPTIONS
@@ -177,7 +195,8 @@ public class BuddahService
     @Produces( { MediaType.APPLICATION_OCTET_STREAM } )
     public Response getDealsResultPreflight( @Context HttpServletRequest req )
     {
-        Logger.logRequest( req, "getDealsResultPreflight", null, LoggingConstants.NORMAL );
+        CorrelationLogData correlationLogData = new CorrelationLogData(req.getHeader( HeaderXForwardedFor ), UUID.randomUUID().toString());
+        Logger.logRequest( req, "getDealsResultPreflight", null, correlationLogData, LoggingConstants.NORMAL );
 
         return ServiceModifiers.wrapHeaders( null, MediaType.APPLICATION_OCTET_STREAM, HttpURLConnection.HTTP_OK );
     }
@@ -188,9 +207,10 @@ public class BuddahService
     @Produces( { MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON } )
     public Response getDealsResult( @Context HttpServletRequest req, GetDealsResultRequest getDealsResultRequest )
     {
-        Logger.logRequest( req, "getDealsResult", getDealsResultRequest, LoggingConstants.VERBOSE );
+        CorrelationLogData correlationLogData = new CorrelationLogData(req.getHeader( HeaderXForwardedFor ), UUID.randomUUID().toString());
+        Logger.logRequest( req, "getDealsResult", getDealsResultRequest, correlationLogData, LoggingConstants.VERBOSE );
 
-        return PostingWorkProcessor.getDealsResultProcessor( getDealsResultRequest );
+        return PostingWorkProcessor.getDealsResultProcessor( getDealsResultRequest, correlationLogData);
     }
 
     @OPTIONS
@@ -199,7 +219,8 @@ public class BuddahService
     @Produces( { MediaType.APPLICATION_OCTET_STREAM } )
     public Response ratingPreflight( @Context HttpServletRequest req )
     {
-        Logger.logRequest( req, "ratingPreflight", null, LoggingConstants.NORMAL );
+        CorrelationLogData correlationLogData = new CorrelationLogData(req.getHeader( HeaderXForwardedFor ), UUID.randomUUID().toString());
+        Logger.logRequest( req, "ratingPreflight", null, correlationLogData, LoggingConstants.NORMAL );
 
         return ServiceModifiers.wrapHeaders( null, MediaType.APPLICATION_OCTET_STREAM, HttpURLConnection.HTTP_OK );
     }
@@ -210,9 +231,10 @@ public class BuddahService
     @Produces( { MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON } )
     public Response rating( @Context HttpServletRequest req, RatingRequest ratingRequest )
     {
-        Logger.logRequest( req, "rating", ratingRequest, LoggingConstants.VERBOSE );
+        CorrelationLogData correlationLogData = new CorrelationLogData(req.getHeader( HeaderXForwardedFor ), UUID.randomUUID().toString());
+        Logger.logRequest( req, "rating", ratingRequest, correlationLogData, LoggingConstants.VERBOSE );
 
-        return PostingWorkProcessor.ratingProcessor( ratingRequest );
+        return PostingWorkProcessor.ratingProcessor( ratingRequest, correlationLogData);
     }
 
     @OPTIONS
@@ -221,7 +243,8 @@ public class BuddahService
     @Produces( { MediaType.APPLICATION_OCTET_STREAM } )
     public Response postingPreflight( @Context HttpServletRequest req )
     {
-        Logger.logRequest( req, "postingPreflight", null, LoggingConstants.NORMAL );
+        CorrelationLogData correlationLogData = new CorrelationLogData(req.getHeader( HeaderXForwardedFor ), UUID.randomUUID().toString());
+        Logger.logRequest( req, "postingPreflight", null, correlationLogData, LoggingConstants.NORMAL );
 
         return ServiceModifiers.wrapHeaders( null, MediaType.APPLICATION_OCTET_STREAM, HttpURLConnection.HTTP_OK );
     }
@@ -232,9 +255,10 @@ public class BuddahService
     @Produces( { MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON } )
     public Response posting( @Context HttpServletRequest req, PostingRequest postingRequest )
     {
-        Logger.logRequest( req, "posting", postingRequest, LoggingConstants.VERBOSE );
+        CorrelationLogData correlationLogData = new CorrelationLogData(req.getHeader( HeaderXForwardedFor ), UUID.randomUUID().toString());
+        Logger.logRequest( req, "posting", postingRequest, correlationLogData, LoggingConstants.VERBOSE );
 
-        return PostingWorkProcessor.postingProcessor( postingRequest );
+        return PostingWorkProcessor.postingProcessor( postingRequest, correlationLogData);
     }
 
     @OPTIONS
@@ -243,7 +267,8 @@ public class BuddahService
     @Produces( { MediaType.APPLICATION_OCTET_STREAM } )
     public Response viewUserRatingPreflight( @Context HttpServletRequest req )
     {
-        Logger.logRequest( req, "viewUserRatingPreflight", null, LoggingConstants.NORMAL );
+        CorrelationLogData correlationLogData = new CorrelationLogData(req.getHeader( HeaderXForwardedFor ), UUID.randomUUID().toString());
+        Logger.logRequest( req, "viewUserRatingPreflight", null, correlationLogData, LoggingConstants.NORMAL );
 
         return ServiceModifiers.wrapHeaders( null, MediaType.APPLICATION_OCTET_STREAM, HttpURLConnection.HTTP_OK );
     }
@@ -254,9 +279,10 @@ public class BuddahService
     @Produces( { MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON } )
     public Response viewUserRating( @Context HttpServletRequest req, ViewUserRatingRequest viewUserRatingRequest )
     {
-        Logger.logRequest( req, "viewUserRating", viewUserRatingRequest, LoggingConstants.VERBOSE );
+        CorrelationLogData correlationLogData = new CorrelationLogData(req.getHeader( HeaderXForwardedFor ), UUID.randomUUID().toString());
+        Logger.logRequest( req, "viewUserRating", viewUserRatingRequest, correlationLogData, LoggingConstants.VERBOSE );
 
-        return PostingWorkProcessor.viewUserRatingProcessor( viewUserRatingRequest );
+        return PostingWorkProcessor.viewUserRatingProcessor( viewUserRatingRequest, correlationLogData);
     }
 
     @OPTIONS
@@ -265,7 +291,8 @@ public class BuddahService
     @Produces( { MediaType.APPLICATION_OCTET_STREAM } )
     public Response viewUserRatingResultPreflight( @Context HttpServletRequest req )
     {
-        Logger.logRequest( req, "viewUserRatingResultPreflight", null, LoggingConstants.NORMAL );
+        CorrelationLogData correlationLogData = new CorrelationLogData(req.getHeader( HeaderXForwardedFor ), UUID.randomUUID().toString());
+        Logger.logRequest( req, "viewUserRatingResultPreflight", null, correlationLogData, LoggingConstants.NORMAL );
 
         return ServiceModifiers.wrapHeaders( null, MediaType.APPLICATION_OCTET_STREAM, HttpURLConnection.HTTP_OK );
     }
@@ -277,9 +304,10 @@ public class BuddahService
     public Response viewUserRatingResult( @Context HttpServletRequest req,
             ViewUserRatingResultRequest viewUserRatingResultRequest )
     {
-        Logger.logRequest( req, "viewUserRatingResult", viewUserRatingResultRequest, LoggingConstants.VERBOSE );
+        CorrelationLogData correlationLogData = new CorrelationLogData(req.getHeader( HeaderXForwardedFor ), UUID.randomUUID().toString());
+        Logger.logRequest( req, "viewUserRatingResult", viewUserRatingResultRequest, correlationLogData, LoggingConstants.VERBOSE );
 
-        return PostingWorkProcessor.viewUserRatingResultProcessor( viewUserRatingResultRequest );
+        return PostingWorkProcessor.viewUserRatingResultProcessor( viewUserRatingResultRequest, correlationLogData);
     }
 
 }
